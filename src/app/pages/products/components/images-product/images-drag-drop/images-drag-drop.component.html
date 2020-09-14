@@ -1,0 +1,41 @@
+<div class="container" *ngIf="data">
+    <div class="upload">
+        <label for="file">
+            <div class="image-input">
+                    <img [src]="'../../../../../../assets/images/no-image.svg'" alt="Subir Imagen">
+            </div>
+        </label>
+        <input id="file" hidden type="file" (change)="uploadImage($event)" multiple >
+    </div>
+    <div class="instructions">
+
+    </div>
+</div>
+
+<mat-progress-bar
+mode="determinate"
+[value]="progresUpload$ | async" *ngIf="(progresUpload$ | async)!== 100">
+</mat-progress-bar>
+
+
+<div cdkDropList cdkDropListOrientation="horizontal" class="list" (cdkDropListDropped)="drop($event)" *ngIf="images">
+    
+    <ng-container *ngIf=" (loadingImage$|async) == false ; else loading">
+        <div class="box" *ngFor="let image of images" cdkDrag (mouseover)= "showDelete = true" (mouseleave)="showDelete = false" >
+            <mat-icon (click)="removeImage(image.id)" *ngIf="showDelete" class="delete-image" color="warn">delete</mat-icon>
+            <img [src]="image.url || '../../../../../../assets/images/no-image.svg'" alt="">
+        </div>
+    </ng-container>
+    
+    <ng-template #loading>
+        <div class="div-content">
+            <div class="loading"><div></div><div></div><div></div></div>
+            <span *ngIf="(progresUpload$ | async)!==100">Subiendo imagenes...</span>
+            <span *ngIf="(progresUpload$ | async)===100">Escalando imagenes...</span>
+
+        </div>
+    </ng-template>
+</div>
+
+
+

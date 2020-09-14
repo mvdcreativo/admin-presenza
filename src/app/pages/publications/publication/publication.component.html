@@ -1,0 +1,89 @@
+<mat-card class="card mat-elevation-z16 animate__animated animate__slideInRight">
+    <mat-card-header>
+        <mat-card-title>Publicación</mat-card-title>
+        <mat-card-subtitle>Detalles de la Publicación
+        </mat-card-subtitle>
+    </mat-card-header>
+    <ng-container *ngIf="publicationEdit ; else loading">
+
+        <form [formGroup]="form" (ngSubmit)="dataSubmit()" >
+            <h3 class="c1-1 title-propiedad" appearance="outline">
+                Propiedad:
+                <a [routerLink]="['/productos/producto', publicationEdit.property.id ]" matInput placeholder="Propiedad"
+                    readonly>
+                    {{publicationEdit.property.title}}
+                    <mat-icon class="material-icon-round" color="accent">arrow_forward_ios</mat-icon>
+                </a>
+            </h3>
+
+
+            <mat-form-field appearance="outline">
+                <mat-label>Status</mat-label>
+                <mat-select formControlName="status_id">
+                    <mat-option *ngFor="let status of statuses | async" [value]="status.id">{{ status.name }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div class="c1-1">
+                <h3 class="title-propiedad">Disponible para</h3>
+                <h4 class="subtitle">La propiedad esta disponible para las siguientes transacciones.</h4>
+                <a mat-mini-fab color="accent" (click)="addFormControlTransaction()">
+                    <mat-icon  class="material-icon-round">add</mat-icon>
+                </a>
+            </div>
+            <div formArrayName="transaction_types" class=" c1-1"
+                *ngFor="let item of form.get('transaction_types')['controls']; let i = index">
+
+                <span class="transactio-types" [formGroupName]="i">
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Transacción</mat-label>
+                        <mat-select formControlName="transaction_type_id">
+                            <mat-option *ngFor="let transaction of transactionsTipes | async" [value]="transaction.id">
+                                {{ transaction.name }}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Moneda</mat-label>
+                        <mat-select formControlName="currency_id">
+                            <mat-option *ngFor="let currency of currencies | async" [value]="currency.id">
+                                {{ currency.symbol }}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline"> 
+                        <mat-label>Precio</mat-label>
+                        <input formControlName="price" type="number" matInput placeholder="Precio">
+                    </mat-form-field>
+
+                    <button mat-button class="buttons-actions" (click)="removeTransaction(i)"><mat-icon>delete_outline</mat-icon></button>
+
+                </span>
+                <mat-divider></mat-divider>
+
+            </div>
+           
+
+            <span class="button-content">
+                <button mat-flat-button color="primary" [disabled]="!form.valid" type="submit">Guardar</button>
+            </span>
+        </form>
+
+
+    </ng-container>
+
+    <ng-template #loading>
+        <div class="div-content">
+            <div class="loading">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+
+        </div>
+    </ng-template>
+
+
+    <span class="border"></span>
+</mat-card>

@@ -1,0 +1,48 @@
+    {
+        "selects": {
+            
+            "estado_propiedad": [
+                {
+                    "value": 1,
+                    "name": "Bueno"
+                },
+                {
+                    "value": 2,
+                    "name": "A estrenar"
+                },
+                {
+                    "value": 3,
+                    "name": "Exelente"
+                },
+                {
+                    "value": 4,
+                    "name": "Para reciclar"
+                },
+                {
+                    "value": 5,
+                    "name": "Malo"
+                },
+                {
+                    "value": 6,
+                    "name": "Detalles"
+                },
+                {
+                    "value": 7,
+                    "name": "Con mejoras"
+                }
+            ],
+        
+        
+            "feature_type_valor": [
+                {
+                    "value": "OPC",
+                    "name": "Check 'OPC'"
+                },
+                {
+                    "value": "VAL",
+                    "name": "Campo de texto 'VAL'"
+                }
+            ]
+        
+        }
+    }

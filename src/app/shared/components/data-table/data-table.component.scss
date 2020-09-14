@@ -1,0 +1,30 @@
+.buttons-actions{
+    background-color: transparent;
+    color: #9e9e9e;
+    &:hover{
+        color: var(--color-primary)
+    }
+    .material-icons{
+        font-size: 18px!important;
+    }
+    .mat-icon{
+        height: inherit!important;
+        width: inherit!important;
+    }
+}
+
+.publish{
+    color: var(--color-success);
+}
+.mat-button-base{
+    padding: 5px!important;
+    margin: 0px 3px
+}
+.mat-button{
+    min-width: 0px!important;
+    line-height: 16px!important;
+}
+.tips{
+    background-color: rgb(241, 241, 241)!important;
+    color: black!important;
+}

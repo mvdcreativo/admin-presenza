@@ -1,0 +1,19 @@
+.user-menu{
+    display: grid;
+    grid-auto-flow:column;
+    justify-items: center;
+    .btn-user{
+        // display: flex;
+        // flex-direction: column!important;
+        background-color: white!important;
+        color: var(--color-dark);
+        // justify-content: baseline;
+        // align-items: center;
+        .mat-icon{
+           
+    
+        }
+
+    }
+
+}

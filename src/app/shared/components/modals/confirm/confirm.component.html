@@ -1,0 +1,13 @@
+<mat-card *ngIf="data" class="card">
+    <h1>Cuidado!!</h1>
+    <div>
+        <p>Seguro de eliminar {{data.name}}?</p>
+        <p>{{ data.message }}</p>
+    </div>
+    <div class="btn-actions">
+
+        <button mat-flat-button  class="btn-secondary" (click)="onNoClick()">Cancelar</button>
+        <button mat-flat-button (click)="confirm()" color="primary" cdkFocusInitial>Aceptar</button>
+    </div>
+    
+</mat-card>

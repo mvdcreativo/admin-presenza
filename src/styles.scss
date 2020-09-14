@@ -1,1 +1,368 @@
+@import './app/shared/utils/loaders/loading.scss';
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$admin-primary: mat-palette($mat-blue,A700);
+$admin-accent: mat-palette($mat-teal, 500);
+
+// The warn palette is optional (defaults to red).
+$admin-warn: mat-palette($mat-red);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$admin-theme: mat-light-theme((
+  color: (
+    primary: $admin-primary,
+    accent: $admin-accent,
+    warn: $admin-warn,
+  )
+));
+
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($admin-theme);
+
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; overflow: hidden; }
+
+
+////TOOLBAR////
+.toolbar-principal{
+  @include mat-elevation(16);
+}
+//////////////
+
+//VARIABLES
+
+:root {
+  --color-primary: rgb(41, 98, 255);
+  --color-primary-light: rgba(41, 98, 255, 0.521);
+  --color-secondary: rgb(10, 231, 176);
+  --color-success: rgb(69, 187, 75);
+  --color-warn: rgb(211, 47, 47);
+  --color-dark: rgb(33, 33, 33);
+  --color-grey: rgb(221, 221, 221);
+
+  --background-gral: #f7f7f7;
+}
+
+////reset
+*{
+  margin: 0;
+  padding: 0;
+}
+
+a{
+  text-decoration: none;
+  color: var(--color-primary);
+  font-weight: 400;
+  &:hover{
+      text-decoration: underline;
+      color: var(--color-secondary)
+  }
+}
+
+.mat-drawer-side{
+  border-right: none;
+}
+.mat-toolbar,.mat-sidenav-content,.mat-sidenav{
+  background-color: var(--background-gral)!important;
+}
+    ///width input
+.mat-form-field-infix{
+  width: 170px!important;
+}
+
+///////////////
+
+
+////customize formFields
+.mat-form-field-outline-start, .mat-form-field-outline-gap, .mat-form-field-outline-end{
+  background-color: var(--background-gral)!important;
+  // border-color: white!important;
+  
+}
+
+//float level
+.mat-form-field-should-float .mat-form-field-label,
+.mat-input-server:focus + .mat-form-field-label-wrapper .mat-form-field-label {
+  background-color: var(--background-gral);
+  width: auto!important;
+  border-radius: 50px;
+  padding: 2px 10px;
+  margin-left: -5px;
+  margin-top: -6px;
+}
+
+// Theme styles that only apply to the outline appearance of the form-field.
+
+  .mat-form-field-appearance-outline {
+    .mat-form-field-outline {
+      color: var(--background-gral)!important; //color de borde
+    }
+
+    .mat-form-field-outline-thick {
+      // color: var(--color-primary-light)!important;//// color borde hover
+      @include mat-elevation(6);
+      transition: 1s;
+      border-radius: 5px;
+    }
+
+    &.mat-focused {
+      .mat-form-field-outline-thick {
+        color: var(--color-primary)!important;
+      }
+
+      &.mat-accent .mat-form-field-outline-thick {
+        color: var(--color-secondary)!important;
+      }
+
+      &.mat-warn .mat-form-field-outline-thick {
+        color: var(--color-warn)!important;
+      }
+    }
+
+    // Class repeated so that rule is specific enough to override focused accent color case.
+    &.mat-form-field-invalid.mat-form-field-invalid {
+      .mat-form-field-outline-thick {
+        color: var(--color-warn)!important;
+      }
+    }
+
+    // &.mat-form-field-disabled {
+    //   .mat-form-field-label {
+    //     color: $label-disabled-color!important;
+    //   }
+
+    //   .mat-form-field-outline {
+    //     color: $outline-color-disabled!important;
+    //   }
+    // }
+  }
+  .searchContent{
+    margin: 1rem 0;
+    .input{
+      box-sizing: border-box;
+      background-color: var(--background-gral);
+      border:none;
+      line-height: 3;
+      padding: 0 16px;
+      border-radius: 50px;
+      outline: none;
+      width: 100%;
+    }
+    span{
+      font-size: 11px;
+      color: #a5a5a5;
+      margin-left: 1rem;
+    }
+  }
+
+/////////  
+
+
+////////DIALOG
+.mat-dialog-container {
+  padding: 0!important;
+  border-radius: 20px!important;
+  box-shadow: 0px 0px 73px 24px rgba(1, 22, 63, 0.42)!important;
+
+}
+.btn-close-modal{
+  position: absolute!important;
+  top:2px!important;
+  right: 2px!important;
+}
+.cdk-overlay-dark-backdrop{
+  background: none!important;
+}
+.cdk-global-scrollblock{
+  overflow: hidden!important;
+}
+
+.btn-actions{
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  justify-items: end;
+  column-gap: 1rem;
+
+  button{
+    width: 100%!important;
+  }
+  // margin-left: 10px!important;
+  // margin-right: 10px!important;
+}
+//////////////
+
+
+
+//////////////BUTTONS
+.mat-button, .mat-flat-button, .mat-stroked-button{
+  border-radius: 50px!important;
+}
+.mat-stroked-button{
+  border-color: inherit!important;
+}
+.btn-add{
+  color: var(--color-dark);
+}
+
+.btn-secondary{
+  background-color: var(--color-grey);
+}
+
+/////////////////////
+
+//////SNACK-BAR//
+.success-snack-bar{
+  background-color: var(--color-success)!important;
+  color: white!important;
+}
+.error-snack-bar{
+  background-color: var(--color-warn)!important;
+  color: white!important;
+}
+////////////////
+
+/////////////CARDS
+.mat-card{
+  padding-left: calc(16px + 10px)!important;
+  border-radius: 16px!important;
+  transition: 3s ;
+  margin: 2rem auto!important;
+  box-sizing: border-box!important;
+  @include mat-elevation(16);
+  .mat-card-header{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px,auto));
+    align-content: center;
+    align-items: center;
+    button{
+      font-size: 12px;
+      font-weight: 400;
+      
+    }
+    .mat-card-title{
+      
+    }
+    .mat-card-subtitle{
+
+    }
+    .actions{
+      display: grid;
+      grid-template-columns: repeat(4,1fr) ;
+      justify-content: space-around!important;
+      justify-items: right;
+      column-gap: 5px;
+    }
+  }
+
+  &:hover{
+    // @include mat-elevation();
+
+  }
+  table{
+    width: 100%;
+    .th.mat-header-cell, td.mat-cell, td.mat-footer-cell{
+      padding: 0px 1rem !important;
+      font-size: 12px;
+    }
+    .th.mat-header-cell{
+      text-align: center!important;
+    }
+  }
+
+}
+.border{
+  position: absolute;
+  width: 10px;
+  height: calc( 100% - 16px - 16px);
+  top: 16px;
+  left: 0px;
+  display: block;
+  background-color: mat-color($admin-primary);
+  border-radius: 0 10px 10px 0;
+}
+///////////////////
+
+//////////TABS////
+.mat-tab-body{
+  padding-top: 1rem!important;
+  min-height: calc(100vh - 270px) ;
+  
+}
+//////////////////
+
+
+////COLUMNAS
+.c2-1{
+  grid-column: 2 / -1;
+}
+.c1-1{
+  grid-column: 1 / -1;
+}
+///////////
+
+
+
+/////ANIMATIONS
+
+:root{
+
+  .animate__animated.animate__slideInRight {
+    --animate-duration: 300ms;
+  }
+}
+
+//////////////
+
+
+///////
+.items-menu-principal{
+  margin-right: 5px;
+  a{
+    border-radius: 0 50px 50px 0!important;
+    &:hover{
+      background-color: var(--color-primary-light)!important;
+      color: white!important;
+      .mat-ripple,.mat-list-item-ripple{
+        border-radius: 0 50px 50px 0!important;
+      }
+    }
+    &:active{
+      background-color: var(--color-primary)!important;
+      color: white!important;
+    }
+    
+  }
+  .router-link-active{
+    border-radius: 0 50px 50px 0;
+    background-color: var(--color-primary)!important;
+    @include mat-elevation(3);
+    color: white;
+    
+  }
+}
+
+
+@media (max-width: 500px){
+  .c2-1,.c1-1{
+    grid-column: 1 / -1;
+  }
+}

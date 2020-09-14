@@ -1,0 +1,54 @@
+<form [formGroup]="form" *ngIf="features">
+    <span >
+        <section formArrayName="features" *ngFor="let featureGroup of form.get('features')['controls']; let i=index" class="featureGroup">
+            <h2>{{ features[i].name }}</h2>
+
+            <div class="content-group">
+                <div [formArrayName]="i" *ngFor="let feature of form.get(['features', i])['controls'] ; let j=index" >
+                    <span [formGroupName]="j">
+                        <div *ngIf="features[i].features[j].type === 'OPC'" class="checkbox">
+                            <mat-checkbox formControlName="check">
+                                {{ features[i].features[j].name }}
+                            </mat-checkbox>
+                            <input formControlName="feature_id"  type="hidden">
+                        </div>
+    
+                        <div *ngIf="features[i].features[j].type !== 'OPC'  && features[i].features[j].id !== 18 ">
+                            <input formControlName="feature_id"  type="hidden">
+    
+                            <mat-form-field class="" appearance="outline">
+                                <mat-label>{{ features[i].features[j].name }}</mat-label>
+                                <input formControlName="value" [value]="" matInput [placeholder]="features[i].features[j].name">
+                            </mat-form-field>
+                        </div>
+
+                        <div *ngIf="features[i].features[j].id === 18" >
+                            <input formControlName="feature_id"  type="hidden">
+
+
+                            <mat-form-field class="" appearance="outline">
+                                <mat-label>Status</mat-label>
+                                <mat-select formControlName="value">
+                                    <mat-option> Selecciona...</mat-option>
+                                    <mat-option *ngFor="let status of optionsStatusProperty" [value]="status.name">{{ status.name }}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+                        </div>
+
+                    </span>
+
+
+
+                </div>
+
+            </div>
+
+
+
+        </section>
+    </span>
+    <span class="button-content">
+        <button mat-flat-button color="primary" (click)="onSubmit()">Sigiente</button>
+    </span>
+</form>

@@ -3,7 +3,27 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  API: "http://presenza_api_v1.test/api/",
+
+
+  ////ROUTES API
+  routesCRUD: {
+    products: "properties",
+    states: "provinces",
+    cities: "cities",
+    countries: "countries",
+    features: "features",
+    municipalities: "municipalities",
+    neighborhoods: "neighborhoods",
+    categories: "property_types",
+    transactionTypes: "transaction_types",
+    publications: "publications",
+    currencies: "currencies"
+
+  }
+
+
 };
 
 /*

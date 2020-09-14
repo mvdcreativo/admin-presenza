@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "admin-presenza": {
+    "admin": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -12,12 +12,12 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": "mvd",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/admin-presenza",
+            "outputPath": "dist/admin",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -66,18 +66,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "admin-presenza:build"
+            "browserTarget": "admin:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "admin-presenza:build:production"
+              "browserTarget": "admin:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "admin-presenza:build"
+            "browserTarget": "admin:build"
           }
         },
         "test": {
@@ -114,15 +114,19 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "admin-presenza:serve"
+            "devServerTarget": "admin:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "admin-presenza:serve:production"
+              "devServerTarget": "admin:serve:production"
             }
           }
         }
       }
-    }},
-  "defaultProject": "admin-presenza"
+    }
+  },
+  "defaultProject": "admin",
+  "cli": {
+    "analytics": "6cda5a19-c8fd-4a07-ace9-04cb86149c6a"
+  }
 }

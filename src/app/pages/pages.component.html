@@ -1,0 +1,19 @@
+<mvd-header [drawer]="drawer"></mvd-header>
+
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+  [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+  [mode]="(isHandset$ | async) ? 'over' : 'side'"
+  [opened]="(isHandset$ | async) === false">
+
+    <mvd-menu-principal></mvd-menu-principal>
+  
+  </mat-sidenav>
+  <mat-sidenav-content ngf>
+      
+    <!-- Add Content Here -->
+
+    <router-outlet></router-outlet>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>

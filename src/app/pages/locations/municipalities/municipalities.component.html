@@ -1,0 +1,29 @@
+<mat-card class="card mat-elevation-z16 animate__animated animate__slideInRight" >
+    <mat-card-header>
+        <mat-card-title>Municipalidades</mat-card-title>
+        <mat-card-subtitle>Administrar Municipalidad</mat-card-subtitle>
+
+        <div class="actions">
+
+            <button mat-flat-button (click)="openDialog()"  color="primary">
+                <mat-icon class="material-icons-round">add</mat-icon> Crear
+            </button>
+            <button mat-flat-button color="" class="btn-simple">
+                <mat-icon class="material-icons-round">print</mat-icon> Imprimir
+            </button>
+            <button mat-flat-button color="" class="btn-simple">
+                <mat-icon class="material-icons-round">save_alt</mat-icon> Exportar
+            </button>
+
+        </div>
+        <mvd-input-search (changeSearch)="search($event)" [noteFilterBy]="'Filtra por Nombre, Id o Coordenadas'" ></mvd-input-search>
+    </mat-card-header>
+
+
+    <mat-card-content>
+        <mvd-data-table [columns]="columns" [dataSource]="dataSource | async" (actionChange)="itemAction($event)" ></mvd-data-table>
+        <mat-paginator (page)="paginatorChange($event)" [length]="totalResut | async" [pageSize]="perPage" [pageSizeOptions]="[20,50,100]" showFirstLastButtons></mat-paginator>
+    </mat-card-content>
+
+    <span class="border"></span>
+</mat-card>

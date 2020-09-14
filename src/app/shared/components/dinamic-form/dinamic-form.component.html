@@ -1,0 +1,34 @@
+<form [formGroup]="form">
+<ng-container *ngFor="let field of fields">
+    <ng-container *ngIf="field.type === 'text'">
+
+        <mat-form-field class="" appearance="outline">
+            <mat-label>{{ field.label }}</mat-label>
+            <input [formControlName]="field.nameControl" matInput [placeholder]="field.label">
+        </mat-form-field>
+
+    </ng-container>
+  
+    <ng-container *ngIf="field.type === 'select'">
+        <mat-form-field class="" appearance="outline">
+            <mat-label>{{ field.label }}</mat-label>
+            <mat-select placeholder="Seleccione Ciudad..." [formControlName]="field.nameControl">
+                <mat-option *ngFor="let opt of field.options"
+                    [value]="opt.value">
+                    {{opt.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </ng-container>
+
+</ng-container>
+
+<div class="btn-actions">
+    <span></span>
+    <span></span>
+    <button mat-flat-button class="btn-secondary">Guardar y Crear Nuevo</button>
+    <button mat-flat-button class="" type="submit" [disabled]="!form.valid" (click)="changeForm(form.value)" color="primary" >Guardar</button>
+
+</div>
+
+</form>

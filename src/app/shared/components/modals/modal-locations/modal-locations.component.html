@@ -1,0 +1,76 @@
+
+        <mat-card class="" >
+            <button class="btn-close-modal" color="primary" mat-mini-fab (click)="onNoClick()" ><mat-icon>close</mat-icon></button>
+            <mat-card-header>
+                <mat-card-title>Nuevo Registro</mat-card-title>
+            </mat-card-header>
+            <form [formGroup]="form">
+                <mat-form-field  *ngIf="states && barrio || ciudad || municipalidad" class="" appearance="outline">
+                    <mat-label>Provincia</mat-label>
+                    <mat-select placeholder="Seleccione Provincia..." formControlName="province_id"
+                        (selectionChange)="onSelectState()">
+                        <mat-option *ngFor="let state of states | async" [value]="state.id">
+                            {{state.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            
+                <mat-form-field *ngIf="cities && barrio || municipalidad" class="" appearance="outline">
+                    <mat-label>Ciudad</mat-label>
+                    <mat-select placeholder="Seleccione Ciudad..." formControlName="city_id"
+                        (selectionChange)="onSelectCity()">
+                        <mat-option *ngFor="let city of cities | async | filterCity: form.get('province_id').value"
+                            [value]="city.id">
+                            {{city.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            
+                <mat-form-field  *ngIf="municipalities && barrio" class="" appearance="outline">
+                    <mat-label>Municipalidad</mat-label>
+                    <mat-select placeholder="Seleccione Municipalidad..." formControlName="municipality_id"
+                        (selectionChange)="onSelectMunicipality()">
+                        <mat-option
+                            *ngFor="let municipality of municipalities | async | filterMunicipality: form.get('city_id').value"
+                            [value]="municipality.id">
+                            {{municipality.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            
+                <!-- <mat-form-field  *ngIf="neighborhoods " class="" appearance="outline">
+                    <mat-label>Localidad/Barrio</mat-label>
+                    <mat-select placeholder="Selecciona Localidad/Barrio..." formControlName="neighborhood_id"
+                        (selectionChange)="onSelectNeighborhood()">
+                        <mat-option
+                            *ngFor="let neighborhood of neighborhoods | async | filterNeighborhoods: form.get('municipality_id').value"
+                            [value]="neighborhood.id">
+                            {{neighborhood.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field> -->
+        
+        
+                <mat-form-field class="c1-1" appearance="outline">
+                    <mat-label>Nombre</mat-label>
+                    <input formControlName="name" matInput placeholder="Nombre">
+                </mat-form-field>
+                <mat-form-field class="c1-1" appearance="outline">
+                    <mat-label>Coordenadas</mat-label>
+                    <input formControlName="code" matInput placeholder="Coordenadas">
+                </mat-form-field>
+            </form>
+        
+        
+            <!-- <span class="border"></span> -->
+            <div class="btn-actions">
+                <span></span>
+                <span></span>
+                <button mat-flat-button class="btn-secondary">Guardar y Crear Nuevo</button>
+                <button mat-flat-button class="" (click)="save()" color="primary" >Guardar</button>
+
+            </div>
+        </mat-card>
+        
+        
+        

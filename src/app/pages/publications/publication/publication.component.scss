@@ -1,0 +1,54 @@
+form{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem!important;
+    .title-propiedad{
+        justify-items: start;
+        font-size: 1.5em;
+        text-align: left;
+        align-items: center;
+        align-content: center;
+        a{
+            color: var(--color-darck);
+            font-weight: 500;
+        }
+
+    }
+    .transactio-types{
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));   
+        gap: 1rem;
+    }
+    span{
+        grid-column: 1/-1;
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
+        button{
+            margin-left: auto;
+            margin-right: auto;
+            padding: 10px 50px;
+        }
+    }
+    .buttons-actions{
+        background-color: transparent;
+        color: #9e9e9e;
+        line-height: 24px!important;
+        margin-bottom: 24px!important;
+        margin-top: 5px;
+        height: 48px;
+        &:hover{
+            color: var(--color-primary)
+        }
+        .material-icons{
+            font-size: 18px!important;
+        }
+        .mat-icon{
+            height: inherit!important;
+            width: inherit!important;
+        }
+    }
+}
