@@ -1,0 +1,35 @@
+<mat-card class="card mat-elevation-z16 animate__animated animate__slideInRight">
+    <mat-card-header>
+        <mat-card-title>Usuarios</mat-card-title>
+        <mat-card-subtitle>Detalles del usuario
+        </mat-card-subtitle>
+    </mat-card-header>
+    <ng-container>
+        <mat-tab-group mat-stretch-tabs class="">
+            <mat-tab label="Datos de Usuario">
+                <mvd-form-user [idUser]="id"></mvd-form-user>
+            </mat-tab>
+
+            <mat-tab label="Gastos">
+                <mvd-expenses></mvd-expenses>
+            </mat-tab>
+        </mat-tab-group>
+
+
+
+    </ng-container>
+
+    <ng-template #loading>
+        <div class="div-content">
+            <div class="loading">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+
+        </div>
+    </ng-template>
+
+
+    <span class="border"></span>
+</mat-card>

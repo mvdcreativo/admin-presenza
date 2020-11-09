@@ -13,7 +13,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
-import { MatOptionModule, MatPseudoCheckboxModule } from '@angular/material/core';
+import { MatNativeDateModule, MatOptionModule, MatPseudoCheckboxModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -22,6 +22,13 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatMomentDateModule } from "@angular/material-moment-adapter";
+import { ColorPickerModule } from 'ngx-color-picker';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 
 
@@ -30,6 +37,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
   declarations: [],
   imports: [
     CommonModule,
+    MatMomentDateModule,
+    ColorPickerModule
     
   ],
   exports: [
@@ -49,13 +58,20 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatListModule,
     MatInputModule,
     MatTabsModule,
-    MatPseudoCheckboxModule,
     MatCheckboxModule,
     DragDropModule,
     MatProgressBarModule,
     MatDialogModule,
     MatSnackBarModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatDatepickerModule,
+    MatMomentDateModule,
+    MatNativeDateModule,
+    MatExpansionModule,
+    ColorPickerModule,
+    MatChipsModule,
+    MatMenuModule,
+    MatAutocompleteModule
   ]
 })
 export class MaterialModule { }

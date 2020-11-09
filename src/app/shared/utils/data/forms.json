@@ -41,6 +41,14 @@
                 {
                     "value": "VAL",
                     "name": "Campo de texto 'VAL'"
+                },
+                {
+                    "value": "VALSTR",
+                    "name": "Selec. Condición Prop 'VALSTR'"
+                },
+                {
+                    "value": "VAL100",
+                    "name": "Rangos de m2 'VAL100'"
                 }
             ]
         

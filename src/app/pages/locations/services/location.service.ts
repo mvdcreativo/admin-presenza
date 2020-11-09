@@ -47,8 +47,8 @@ export class LocationService {
         this.setItems(resp)
         return resp;
       }
-    ),
-    catchError(err => this.errorHandler(err)))
+    )
+    )
   }
 
 
@@ -61,8 +61,8 @@ export class LocationService {
         this.openSnackBar('Se creó correctamente','success-snack-bar')
         //////////
         return v.data
-      }),
-      catchError(error => this.errorHandler(error))
+      })
+      
     )
   }
 
@@ -77,8 +77,7 @@ export class LocationService {
         //////////
         return v
       }
-      ),
-      catchError(error => this.errorHandler(error))
+      )
     )
   }
 
@@ -91,8 +90,7 @@ export class LocationService {
         this.openSnackBar('Actualizado correctamente','success-snack-bar')
         //////////
         return v.data
-      }),
-      catchError(error => this.errorHandler(error))
+      })
     )
   }
 
@@ -135,8 +133,4 @@ export class LocationService {
   }
 
 
-  errorHandler(error: HttpErrorResponse) {
-    this.openSnackBar(error.message || "error en la solicitud.",'error-snack-bar')
-    return Observable.throw(error.message || "error en la solicitud.");
-  }
 }

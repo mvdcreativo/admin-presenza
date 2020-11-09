@@ -36,8 +36,7 @@ export class FeaturesService {
         this.openSnackBar('Se creó correctamente','success-snack-bar')
         //////////
         return v.data
-      }),
-      catchError(error => this.errorHandler(error))
+      })
     )
 
   }
@@ -50,8 +49,7 @@ export class FeaturesService {
         this.openSnackBar('Actualizado correctamente','success-snack-bar')
         //////////
         return v.data
-      }),
-      catchError(error => this.errorHandler(error))
+      })
     )
 
   }
@@ -74,8 +72,7 @@ export class FeaturesService {
         const resp = res
         return resp;
       }
-    ),
-      catchError(error => this.errorHandler(error))
+    )
     )
   }
 
@@ -99,8 +96,7 @@ export class FeaturesService {
         //////////
         return v.data
         
-      }),
-      catchError(error => this.errorHandler(error))
+      })
     )
   }
 
@@ -115,10 +111,6 @@ export class FeaturesService {
     });
   }
 
-  errorHandler(error: HttpErrorResponse) {
-    this.openSnackBar(error.message || "error en la solicitud.", 'error-snack-bar')
-    return Observable.throw(error.message || "error en la solicitud.");
-  }
 
 
 

@@ -8,10 +8,13 @@
     
         <ng-container [matColumnDef]="'actions'">
             <th mat-header-cell *matHeaderCellDef> Acciones </th>
+
             <td mat-cell *matCellDef="let element">
-                <ng-container *ngIf=" columns[3]['title'] == 'Propietario' " >
+
+
+                <ng-container *ngIf="urlSection" >
                     <button mat-button
-                    [ngClass]="{'publish': element.status_id === 5}"
+                    [ngClass]="{'publish': element.publication_id }"
                     class = "buttons-actions"
                     (click)="publication(element)" 
                     matTooltip="Publicar"  

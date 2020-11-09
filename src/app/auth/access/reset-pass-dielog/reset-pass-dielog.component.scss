@@ -1,0 +1,21 @@
+form{
+    position: relative;
+}
+.btn-close{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    box-shadow: none;
+    color: #424242;
+    background-color: transparent;
+}
+.mat-dialog-title{
+    width: 100%;
+    font-family: 'Nunito', "Helvetica Neue", sans-serif;
+    font-variant: normal;
+    text-transform: none;
+}
+.email{
+    margin-top: 1rem;
+    width: 100%;
+}

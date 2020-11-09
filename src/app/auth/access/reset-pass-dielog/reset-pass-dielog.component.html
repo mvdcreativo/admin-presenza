@@ -1,0 +1,22 @@
+    <form fxLayoutAlign="space-between center" fxLayout="row wrap"  (ngSubmit)="enviar()" [formGroup]="formEmail">
+        <button class="btn-close" mat-mini-fab (click)="onNoClick()">
+            <mat-icon>close</mat-icon>
+        </button>
+        <h1 mat-dialog-title>Indica tu Correo Electrónico.
+        </h1>
+        <p>Te enviaremos un correo para restableser tu contraseña</p>
+        <div class="button-wrap" fxFlex="100" fxFlex.gt-sm="100" class="px-1" ngClass.sm="mt-1" ngClass.xs="mt-1"
+            fxLayoutAlign="center center">
+            <mat-form-field class="email">
+                <input formControlName="email" matInput placeholder="Correo Electrónico">
+            </mat-form-field>
+        </div>
+
+        <div fxLayoutAlign="center center" class="button-wrap" fxFlex="100" fxFlex.gt-sm="100" class="px-1"
+            ngClass.sm="mt-1" ngClass.xs="mt-1">
+            <button mat-raised-button color="accent" [disabled]="!formEmail.valid">
+                Solicitar cambio de contraseña
+            </button>
+        </div>
+
+    </form>

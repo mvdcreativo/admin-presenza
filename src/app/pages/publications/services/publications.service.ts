@@ -48,13 +48,15 @@ export class PublicationsService {
         this.openSnackBar('Se creó correctamente','success-snack-bar')
         //////////
         return v.data
-      }),
-      catchError(error => this.errorHandler(error))
+      })
+      
     )
 
   }
 
   updatePublication(data): Observable<Publication>{
+    console.log(data);
+    
     const id = this.publicationEditSubject$.value.id
     // data._method = "put";
     return this.http.put<Response>(`${environment.API}${environment.routesCRUD.publications}/${id}`, data).pipe(
@@ -64,8 +66,8 @@ export class PublicationsService {
         this.openSnackBar('Actualizado correctamente','success-snack-bar')
         //////////
         return v.data
-      }),
-      catchError(error => this.errorHandler(error))
+      })
+      
     )
 
   }
@@ -79,35 +81,35 @@ export class PublicationsService {
         const resp = res.data
         return resp;
       }
-    ),
-    catchError(error => this.errorHandler(error))
+    )
+    
     )
   }
 
 
 
-  ///listar
-  getPublications(currentPage = 1, perPage = 20, filter='', sort= 'desc') : Observable<ResponsePaginate>{
-    return this.http.get<ResponsePaginate>(`${environment.API}${environment.routesCRUD.publications}`, {
-      params: new HttpParams()
-        .set('page', currentPage.toString())
-        .set('filter', filter)
-        .set('sort', sort)
-        .set('per_page', perPage.toString())
+    ///listar
+    getPublications(currentPage = 1, perPage = 20, filter='', sort= 'desc') : Observable<ResponsePaginate>{
+      return this.http.get<ResponsePaginate>(`${environment.API}${environment.routesCRUD.publications}`, {
+        params: new HttpParams()
+          .set('page', currentPage.toString())
+          .set('filter', filter)
+          .set('sort', sort)
+          .set('per_page', perPage.toString())
 
-    }).pipe(map(
-      res => {
-        console.log(res);
-        
-        this.setPublicationOnEdit(null)
-        this.setItems(res)
-        const resp = res
-        return resp;
-      }
-    ),
-    catchError(error => this.errorHandler(error))
-    )
-  }
+      }).pipe(map(
+        res => {
+          console.log(res);
+          
+          this.setPublicationOnEdit(null)
+          this.setItems(res)
+          const resp = res
+          return resp;
+        }
+      )
+      
+      )
+    }
 
   deletePublication(id){
     return this.http.delete<Response>(`${environment.API}${environment.routesCRUD.publications}/${id}`).pipe(
@@ -120,8 +122,8 @@ export class PublicationsService {
         //////////
         return v.data
         
-      }),
-      catchError(error => this.errorHandler(error))
+      })
+      
     )
   }
 
@@ -134,8 +136,5 @@ export class PublicationsService {
     });
   }
   
-  errorHandler(error: HttpErrorResponse) {
-    this.openSnackBar(error.message || "error en la solicitud.",'error-snack-bar')
-    return Observable.throw(error.message || "error en la solicitud.");
-  }
+  
 }

@@ -1,12 +1,32 @@
 <section class="user-menu">
-    <button mat-mini-fab matBadge="8" matBadgePosition="after" matBadgeColor="accent"
+    <button mat-mini-fab matBadge="0" matBadgePosition="after" matBadgeColor="accent"
      class="btn-user mat-elevation-z4">
         <mat-icon class="material-icons-round">notifications</mat-icon>
         <!-- <span>Emir Mendez</span>  -->
     </button>
-    <button mat-mini-fab class="btn-user mat-elevation-z4">
+    <button
+        mat-raised-button 
+        class="btn-user mat-elevation-z4" 
+        [matMenuTriggerFor]="menu" 
+        #menuTrigger="matMenuTrigger">
         <mat-icon class="material-icons-round">how_to_reg</mat-icon>
-        <!-- <span>Emir Mendez</span>  -->
+        <span *ngIf="currentUser |async as currentUser">{{ currentUser.name }} {{ currentUser.last_name.slice(0,1) }}.</span> 
     </button>
     <!-- <span><mat-icon class="material-icons-round" >engineering</mat-icon></span> -->
+    <mat-menu class="desplegable" [overlapTrigger]="false" #menu="matMenu">
+        <span (mouseleave)="menuTrigger.closeMenu()">
+            <a mat-menu-item [routerLink]="[ '/' ]" >
+                <mat-icon>person_pin</mat-icon>
+                <span>Perfil</span>
+            </a>
+            <button mat-menu-item (click)="logout()">
+                <mat-icon>exit_to_app</mat-icon>
+                <span>Salir</span>
+            </button>
+        </span>
+    
+    </mat-menu>
 </section>
+
+
+

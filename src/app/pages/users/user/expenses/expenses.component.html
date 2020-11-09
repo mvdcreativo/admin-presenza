@@ -1,0 +1,20 @@
+<div class="actions">
+
+    <button mat-flat-button (click)="openDialog()" color="primary">
+        <mat-icon class="material-icons-round">add</mat-icon> Crear
+    </button>
+    <button mat-flat-button routerLink="/" color="" class="btn-simple">
+        <mat-icon class="material-icons-round">print</mat-icon> Imprimir
+    </button>
+    <button mat-flat-button routerLink="/" color="" class="btn-simple">
+        <mat-icon class="material-icons-round">save_alt</mat-icon> Exportar
+    </button>
+
+</div>
+<mvd-input-search (changeSearch)="search($event)" [noteFilterBy]="'Filtra múltiples campos'" ></mvd-input-search>
+
+
+
+
+<mvd-data-table *ngIf="dataSource" [columns]="columns" [dataSource]="dataSource | async" (actionChange)="itemAction($event)" ></mvd-data-table>
+<mat-paginator (page)="paginatorChange($event)" [length]="totalResut | async" [pageSize]="perPage" [pageSizeOptions]="[20,50,100]" showFirstLastButtons></mat-paginator>

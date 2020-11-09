@@ -1,0 +1,143 @@
+<div class="my-account sec-padding">
+    <div class="container">
+        <mat-card fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="start start" class="p-0">
+            <div class="my-account-wrap p-0" fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="start start">
+                <div class="login-wrapper pr-50" fxFlex="100" fxFlex.gt-md="50" fxFlex.md="50">
+                    <div class="title">
+                        <h3>Entrar
+                            <span>
+                                <mat-error *ngIf="errorLogin">{{ errorLogin | async }}</mat-error>
+                            </span>
+                        </h3>
+                    </div>
+                    <form fxLayout="row wrap" [formGroup]="formLogin">
+                        <div fxFlex="100" fxFlex.gt-sm="100" class="px-1" ngClass.sm="mt-1" ngClass.xs="mt-1">
+                            <mat-form-field class="w-100">
+                                <input matInput placeholder="Correo Electrónico" type="email" formControlName="email"
+                                    required>
+                                <!-- <mat-error *ngIf="name.invalid">Campo inválido</mat-error> -->
+                            </mat-form-field>
+                        </div>
+                        <div fxFlex="100" fxFlex.gt-sm="100" class="px-1" ngClass.sm="mt-1" ngClass.xs="mt-1">
+                            <mat-form-field class="w-100">
+                                <input matInput placeholder="Contraseña" type="password" formControlName="password"
+                                    required>
+                                <!-- <mat-error *ngIf="email.invalid">Campo inválido</mat-error> -->
+                            </mat-form-field>
+                        </div>
+                        <div class="button-wrap" fxFlex="100" fxFlex.gt-sm="100" class="px-1" ngClass.sm="mt-1"
+                            ngClass.xs="mt-1" fxLayoutAlign="space-between center">
+                            <button class="btn-project" [disabled]="!formLogin.valid" (click)="onSubmitLogin()"
+                                mat-raised-button color="accent">
+                                Entrar
+                            </button>
+                        </div>
+
+                        <div class="button-wrap" fxFlex="100" fxFlex.gt-sm="100" class="px-1" ngClass.sm="mt-1"
+                            ngClass.xs="mt-1" fxLayoutAlign="space-between center">
+                            <button class="btn-project  btn-google" (click)="signInWithGoogle()" mat-raised-button>
+                                <img class="ico" src="../../../assets/images/ico-google.svg">
+                                Entrar con Google
+                            </button>
+
+                        </div>
+                        <div class="button-wrap" fxFlex="100" fxFlex.gt-sm="100" class="px-1" ngClass.sm="mt-1"
+                            ngClass.xs="mt-1" fxLayoutAlign="space-between center">
+                            <button class="btn-project btn-facebook" (click)="signInWithFB()" mat-raised-button>
+                                <img class="ico" src="../../../assets/images/ico-facebook.svg"> Entrar con Facebook
+                            </button>
+
+                        </div>
+                        <div class="button-wrap" fxFlex="100" fxFlex.gt-sm="100" class="px-1" ngClass.sm="mt-1"
+                            ngClass.xs="mt-1" fxLayoutAlign="space-between center">
+                            <span class="reset-pass"><a (click)="openResetPassDialog()">Olvidé mi contraseña</a></span>
+
+                        </div>
+                    </form>
+                </div>
+
+
+
+                <div class="register-wrapper pr-15" fxFlex="100" fxFlex.gt-md="50" fxFlex.md="50">
+                    <div class="title">
+                        <h3>Registrarse</h3>
+                    </div>
+                    <div class="register-body">
+                        <p>Cree una nueva cuenta para obtener los beneficios de una experiencia de compra personalizada.
+                        </p>
+                        <form fxLayout="row wrap" [formGroup]="formRegister">
+                            <div fxFlex="100" fxFlex.gt-md="50" fxFlex.md="50" class="mt-20 pr-5" ngClass.sm="mt-10"
+                                ngClass.xs="mt-10">
+                                <mat-form-field class="w-100">
+                                    <input matInput placeholder="Nombre" type="text" formControlName="name" required>
+                                    <!-- <mat-error *ngIf="name.invalid">Dato inválido</mat-error> -->
+                                </mat-form-field>
+                            </div>
+                            <div fxFlex="100" fxFlex.gt-md="50" fxFlex.md="50" class="pl-5 mt-20" ngClass.sm="mt-10"
+                                ngClass.xs="mt-10">
+                                <mat-form-field class="w-100">
+                                    <input matInput placeholder="Teléfono" type="tel" formControlName="phone" required>
+                                    <!-- <mat-error *ngIf="phone.invalid">Dato inválido</mat-error> -->
+                                </mat-form-field>
+                            </div>
+                            <div fxFlex="100" fxFlex.gt-sm="100" class="px-1" ngClass.sm="mt-1" ngClass.xs="mt-1">
+                                <mat-form-field class="w-100">
+                                    <input matInput placeholder="Correo Electrónico" type="email"
+                                        formControlName="email" required>
+                                    <!-- <mat-error *ngIf="name.invalid">Campo inválido</mat-error> -->
+                                </mat-form-field>
+                            </div>
+                            <div fxFlex="100" fxFlex.gt-sm="100" class="px-1" ngClass.sm="mt-1" ngClass.xs="mt-1">
+                                <mat-form-field class="w-100">
+                                    <input matInput placeholder="Contraseña" type="password" formControlName="password"
+                                        required>
+                                    <!-- <mat-error *ngIf="email.invalid">Campo inválido</mat-error> -->
+                                </mat-form-field>
+                            </div>
+                            <div fxFlex="100" fxFlex.gt-sm="100" class="px-1" ngClass.sm="mt-1" ngClass.xs="mt-1">
+                                <mat-form-field class="w-100">
+                                    <input matInput placeholder="Confirmar Contraseña"
+                                        formControlName="password_confirmation" type="password" required>
+                                    <!-- <mat-error *ngIf="email.invalid">Campo inválido</mat-error> -->
+                                </mat-form-field>
+                            </div>
+                            <!-- <div class="add-info">
+                              <h3>Additional information</h3>
+                              <p class="text-muted">Order notes (optional)</p>
+          
+                            </div>
+                            <div  fxFlex="100" fxFlex.gt-sm="100" class="mt-20" ngClass.sm="mt-10" ngClass.xs="mt-10">
+                                <mat-form-field class="w-100">
+                                    <textarea placeholder="Post content" matInput rows="4" ngModel name="content"></textarea>
+                                  </mat-form-field>
+                            </div> -->
+                            <div class="button-wrap" fxFlex="100" fxFlex.gt-sm="100" class="px-1" ngClass.sm="mt-1"
+                                ngClass.xs="mt-1">
+                                <button class="btn-project" mat-raised-button (click)="onSubmitRegister()"
+                                    color="accent">Enviar Datos</button>
+                            </div>
+                        </form>
+                        <!-- <form fxLayout="row wrap">
+                            <div fxFlex="100" fxFlex.gt-sm="100" class="px-1" ngClass.sm="mt-1" ngClass.xs="mt-1">
+                                <mat-form-field class="w-100">
+                                    <input matInput placeholder="Correo electrónico" #name="ngModel" ngModel name="name"
+                                        required>
+                                    <mat-error *ngIf="name.invalid">Campo inválido</mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <p>Sus datos personales se utilizarán únicamente para mejorar la experiencia en este sitio
+                                web, para administrar el acceso a su cuenta.</p>
+                            <div class="button-wrap" fxFlex="100" fxFlex.gt-sm="100" ngClass.sm="mt-1"
+                                ngClass.xs="mt-1">
+                                <button class="btn-project" mat-raised-button color="accent"
+                                    type="submit">Registrarse</button>
+                            </div>
+                        </form> -->
+                    </div>
+                </div>
+            </div>
+        </mat-card>
+
+    </div>
+</div>

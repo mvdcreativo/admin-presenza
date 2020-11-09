@@ -1,4 +1,5 @@
 export interface Fields {
+    titleForm?: string; 
     nameControl:string;
     type:string;
     label: string;

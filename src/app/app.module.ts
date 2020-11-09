@@ -10,6 +10,10 @@ import { LayoutModule } from "./layout/layout.module";
 
 import { AppComponent } from './app.component';
 import { PagesComponent } from './pages/pages.component';
+import { indexAuthInterceptor } from './auth/helpers/index-auth.interceptor';
+import { AuthModule } from './auth/auth.module';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter';
 
 @NgModule({
   declarations: [
@@ -22,9 +26,14 @@ import { PagesComponent } from './pages/pages.component';
     BrowserAnimationsModule,
     AppRoutingModule,
     LayoutModule,
-    SharedModule
+    SharedModule,
+    AuthModule
   ],
-  providers: [],
+  providers: [
+    indexAuthInterceptor,
+    {provide: MAT_DATE_LOCALE, useValue: 'es-UY'},
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

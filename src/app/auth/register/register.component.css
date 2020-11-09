@@ -1,0 +1,21 @@
+.container-fluid {
+  height: 100vh;
+  background-size: cover;
+}
+.container-fluid .access {
+  width: 100%;
+  height: 64px;
+  display: flex;
+  justify-content: flex-end;
+  color: white;
+}
+.container-fluid mat-card .row {
+  padding: 0 1rem 0 1rem;
+}
+.container-fluid mat-card .row mat-form-field {
+  width: 100%;
+}
+.container-fluid mat-card .row button {
+  width: 100%;
+  height: 3em;
+}

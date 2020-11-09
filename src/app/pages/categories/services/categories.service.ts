@@ -36,8 +36,7 @@ export class CategoriesService {
         this.openSnackBar('Se creó correctamente','success-snack-bar')
         //////////
         return v.data
-      }),
-      catchError(error => this.errorHandler(error))
+      })
     )
 
   }
@@ -50,8 +49,7 @@ export class CategoriesService {
         this.openSnackBar('Actualizado correctamente','success-snack-bar')
         //////////
         return v.data
-      }),
-      catchError(error => this.errorHandler(error))
+      })
     )
 
   }
@@ -74,9 +72,7 @@ export class CategoriesService {
         const resp = res
         return resp;
       }
-    ),
-      catchError(error => this.errorHandler(error))
-    )
+    ))
   }
 
 
@@ -91,8 +87,7 @@ export class CategoriesService {
         //////////
         return v.data
         
-      }),
-      catchError(error => this.errorHandler(error))
+      })
     )
   }
 
@@ -107,8 +102,4 @@ export class CategoriesService {
     });
   }
 
-  errorHandler(error: HttpErrorResponse) {
-    this.openSnackBar(error.message || "error en la solicitud.", 'error-snack-bar')
-    return Observable.throw(error.message || "error en la solicitud.");
-  }
 }

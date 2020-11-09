@@ -1,10 +1,11 @@
-<form [formGroup]="form">
+<form [formGroup]="form" *ngIf="fields">
 <ng-container *ngFor="let field of fields">
-    <ng-container *ngIf="field.type === 'text'">
+
+    <ng-container *ngIf="field.type === 'text' || field.type === 'time'">
 
         <mat-form-field class="" appearance="outline">
             <mat-label>{{ field.label }}</mat-label>
-            <input [formControlName]="field.nameControl" matInput [placeholder]="field.label">
+            <input [formControlName]="field.nameControl" matInput [placeholder]="field.label" [type]="field.type" >
         </mat-form-field>
 
     </ng-container>
@@ -21,14 +22,106 @@
         </mat-form-field>
     </ng-container>
 
+
+    <ng-container *ngIf="field.type === 'date'">
+
+        <mat-form-field class="" appearance="outline">
+            <mat-label>{{ field.label }}</mat-label>
+            <input 
+                [formControlName]="field.nameControl" 
+                matInput 
+                [placeholder]="field.label" 
+                [matDatepicker]="picker" 
+                autocomplete="off" 
+                (click)="picker.open()">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker startView="year"></mat-datepicker>
+        </mat-form-field>
+
+    </ng-container>
+
+    <ng-container  *ngIf="field.type === 'textarea'">
+
+        <mat-form-field class="mvd-col1--1"  appearance="outline">
+            <mat-label>{{ field.label }}</mat-label>
+            <textarea style="min-height: 100px" [formControlName]="field.nameControl"  matInput  [placeholder]="field.label"></textarea>
+        </mat-form-field>
+
+    </ng-container>
+
+    <ng-container  *ngIf="field.type === 'number'">
+
+        <mat-form-field class="" appearance="outline">
+            <mat-label>{{ field.label }}</mat-label>
+            <input type="number" [formControlName]="field.nameControl" matInput [placeholder]="field.label" autocomplete="off" >
+        </mat-form-field>
+
+    </ng-container>
+
+    <!-- <ng-container  *ngIf="field.type === 'color'">
+        <div class="content-color">
+            <mat-form-field class="" appearance="outline">
+                <mat-label>{{ field.label }}</mat-label>
+                <input matInput [(colorPicker)]="colorPreview" (colorPickerChange)="chanhgeColor()"  [formControlName]="field.nameControl" [placeholder]="field.label" autocomplete="off">
+            </mat-form-field>
+            <mat-icon [(colorPicker)]="colorPreview" (colorPickerChange)="chanhgeColor()" [ngStyle]="{'color': colorPreview}" class="material-icons-round">web</mat-icon>
+            
+        </div>
+    </ng-container> -->
+
+
+    <!-- <ng-container  *ngIf="field.type === 'select_ico'">
+        <div class="content-select-ico">
+            <button mat-flat-button class="btn-select-ico" [ngStyle]="{'background-color': colorPreview}"color="primary" (click)="selectIco()">
+                <mat-icon class="material-icons-round">{{ field.value }}</mat-icon>
+                Seleccionar Icono 
+            </button>
+        </div>
+    </ng-container> -->
+    
+    <ng-container *ngIf="field.type === 'image'">
+        <div class="content-image">
+            <div class="upload">
+                <label for="file">
+                    <div class="image-input">
+                        <img [src]="imgPreview" *ngIf="imgPreview" alt="Subir Imagen">
+                        <img [src]="'../../../assets/images/no-image.svg'" *ngIf="!imgPreview" alt="Subir Imagen">
+                    </div>
+                </label>
+                <input id="file" hidden type="file" (change)="uploadImage($event)">
+                <span style="color:red;" *ngIf="messageUpload">{{messageUpload}}</span>
+            </div>
+        </div>
+    </ng-container>
+    
+    <ng-container *ngIf="field.type === 'autocomplete'">
+        <mat-form-field class="mvd-col1--1"  appearance="outline">
+            <input
+                [placeholder]="field.label"
+                aria-label="Number"
+                matInput
+                [formControlName]="field.nameControl"
+                [matAutocomplete]="auto"
+            >
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngFor="let opt of options" [value]="opt.name">
+                {{ opt.name }}
+              </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    
+    </ng-container>
 </ng-container>
+
 
 <div class="btn-actions">
     <span></span>
     <span></span>
-    <button mat-flat-button class="btn-secondary">Guardar y Crear Nuevo</button>
+    <!-- <button mat-flat-button class="btn-secondary">Guardar y Crear Nuevo</button> -->
     <button mat-flat-button class="" type="submit" [disabled]="!form.valid" (click)="changeForm(form.value)" color="primary" >Guardar</button>
 
 </div>
+
+
 
 </form>

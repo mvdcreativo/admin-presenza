@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ResponsePaginate } from 'src/app/shared/interfaces/response';
 import { environment } from 'src/environments/environment';
-import { take, map, catchError } from 'rxjs/operators';
+import { take, map } from 'rxjs/operators';
 import { Response } from "src/app/shared/interfaces/response";
 
 import { TransactionType } from "./../interfaces/transaction-type";
@@ -38,8 +38,7 @@ export class TransactionTypesService {
         this.openSnackBar('Se creó correctamente','success-snack-bar')
         //////////
         return v.data
-      }),
-      catchError(error => this.errorHandler(error))
+      })
     )
 
   }
@@ -52,8 +51,7 @@ export class TransactionTypesService {
         this.openSnackBar('Actualizado correctamente','success-snack-bar')
         //////////
         return v.data
-      }),
-      catchError(error => this.errorHandler(error))
+      })
     )
 
   }
@@ -76,8 +74,7 @@ export class TransactionTypesService {
         const resp = res
         return resp;
       }
-    ),
-      catchError(error => this.errorHandler(error))
+    )
     )
   }
 
@@ -93,8 +90,7 @@ export class TransactionTypesService {
         //////////
         return v.data
         
-      }),
-      catchError(error => this.errorHandler(error))
+      })
     )
   }
 
@@ -109,8 +105,5 @@ export class TransactionTypesService {
     });
   }
 
-  errorHandler(error: HttpErrorResponse) {
-    this.openSnackBar(error.message || "error en la solicitud.", 'error-snack-bar')
-    return Observable.throw(error.message || "error en la solicitud.");
-  }
+
 }

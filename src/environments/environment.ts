@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   API: "http://presenza_api_v1.test/api/",
+  APIAuth: "http://presenza_api_v1.test/api/auth/",
 
 
   ////ROUTES API
@@ -19,7 +20,9 @@ export const environment = {
     categories: "property_types",
     transactionTypes: "transaction_types",
     publications: "publications",
-    currencies: "currencies"
+    currencies: "currencies",
+    users: "users",
+    expenses: "expenses"
 
   }
 

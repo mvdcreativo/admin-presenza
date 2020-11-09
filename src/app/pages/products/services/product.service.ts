@@ -52,8 +52,8 @@ export class ProductService {
         this.openSnackBar('Se creó correctamente','success-snack-bar')
         //////////
         return v.data
-      }),
-      catchError(error => this.errorHandler(error))
+      })
+      
     )
 
   }
@@ -68,8 +68,8 @@ export class ProductService {
         this.openSnackBar('Actualizado correctamente','success-snack-bar')
         //////////
         return v.data
-      }),
-      catchError(error => this.errorHandler(error))
+      })
+      
     )
 
   }
@@ -85,8 +85,8 @@ export class ProductService {
         //////////
         return v.data
         
-      }),
-      catchError(error => this.errorHandler(error))
+      })
+      
     )
   }
  
@@ -98,8 +98,8 @@ export class ProductService {
         const resp = res.data
         return resp;
       }
-    ),
-    catchError(error => this.errorHandler(error))
+    )
+    
     )
   }
 
@@ -122,17 +122,15 @@ export class ProductService {
         const resp = res
         return resp;
       }
-    ),
-    catchError(error => this.errorHandler(error))
+    )
+    
     )
   }
 
 
 
   public getOptionsSelect(): Observable<OptionSelect[]> {
-    return this.http.get<OptionSelect[]>(this.urlUtils + 'forms.json').pipe(
-      catchError(error => this.errorHandler(error))
-    );
+    return this.http.get<OptionSelect[]>(this.urlUtils + 'forms.json')
   }
 
 
@@ -145,8 +143,5 @@ export class ProductService {
     });
   }
   
-  errorHandler(error: HttpErrorResponse) {
-    this.openSnackBar(error.message || "error en la solicitud.",'error-snack-bar')
-    return Observable.throw(error.message || "error en la solicitud.");
-  }
+
 }

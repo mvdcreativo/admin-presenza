@@ -10,6 +10,7 @@ import { ProductComponent } from './product/product.component';
 import { FeaturesComponent } from './components/features/features.component';
 import { ImagesDragDropComponent } from "./components/images-product/images-drag-drop/images-drag-drop.component";
 import { ImagesProductComponent } from './components/images-product/images-product.component';
+import { PublicationsModule } from '../publications/publications.module';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { ImagesProductComponent } from './components/images-product/images-produ
     CommonModule,
     ProductsRoutingModule,
     SharedModule,
+    PublicationsModule
   ]
 })
 export class ProductsModule { }

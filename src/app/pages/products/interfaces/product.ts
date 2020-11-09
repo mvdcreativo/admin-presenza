@@ -1,3 +1,4 @@
+import { User } from 'src/app/pages/users/interfaces/user';
 import { Publication } from '../../publications/interfaces/publication';
 
 export interface ResponsePaginate {
@@ -52,14 +53,7 @@ export interface Product {
     publication?: Publication;
 }
 
-export interface User {
-    id: number;
-    name: string;
-    email: string;
-    email_verified_at?: any;
-    created_at: Date;
-    updated_at: Date;
-}
+
 
 export interface Image {
     id?: number;

@@ -23,8 +23,8 @@ export class PublicationsComponent implements OnInit {
       { title: 'ID', col: 'id' },
       { title: 'Título', col: 'title' },
       { title: 'Barrio', col: 'neighborhood' },
-      { title: 'Publicada ', col: 'created_at', pipe: "dd/MM/yyyy" },
-      { title: 'Actualizada', col: 'updated_at', pipe: "dd/MM/yyyy" },
+      { title: 'Publicada ', col: 'created', pipe: "dd/MM/yyyy" },
+      { title: 'Actualizada', col: 'updated', pipe: "dd/MM/yyyy" },
     ]
 
   dataSource:Observable<any[]>;
@@ -68,7 +68,7 @@ export class PublicationsComponent implements OnInit {
 
 
   getPublications(currentPage?, perPage?, filter?, sort?) {
-    this.subscroption = this.publicationsService.getPublications(currentPage, perPage, filter, sort).subscribe(next => this.loadData());
+    this.subscroption = this.publicationsService.getPublications( ).subscribe(next => this.loadData());
   }
 
   loadData() {
@@ -79,8 +79,8 @@ export class PublicationsComponent implements OnInit {
         return {
           id: x.id,
           title: x.property?.title,
-          updated_at: x.updated_at,
-          created_at: x.created_at,
+          updated: x.updated_at,
+          created: x.created_at,
           neighborhood: x.property?.neighborhood.name
         }
       })
