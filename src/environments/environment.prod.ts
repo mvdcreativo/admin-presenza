@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
-  API: "https://admin.presenza.picaworks.com/api/",
-  APIAuth: "https://admin.presenza.picaworks.com/api/auth/",
+  API: "https://api.presenza.picaworks.com/api/",
+  APIAuth: "https://api.presenza.picaworks.com/api/auth/",
 
 
   ////ROUTES API
