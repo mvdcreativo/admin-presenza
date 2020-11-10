@@ -22,7 +22,8 @@ export const environment = {
     publications: "publications",
     currencies: "currencies",
     users: "users",
-    expenses: "expenses"
+    expenses: "expenses",
+    properties_user: "properties_user"
 
   }
 
