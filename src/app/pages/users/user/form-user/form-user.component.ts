@@ -47,6 +47,8 @@ export class FormUserComponent implements OnInit, OnDestroy {
   getUser(id){
     this.subcriptions.push(this.userService.getUser(id).subscribe(
         res => {
+          console.log(res);
+          
           this.userEdit = res
           // console.log(res);
           this.setFields()

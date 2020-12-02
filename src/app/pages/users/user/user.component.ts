@@ -24,7 +24,7 @@ export class UserComponent implements OnInit {
       (params: Params) => {
         if (params.params.id) {
             this.id = params.params.id
-            console.log(this.id)
+            // console.log(this.id)
         } 
       }
     )

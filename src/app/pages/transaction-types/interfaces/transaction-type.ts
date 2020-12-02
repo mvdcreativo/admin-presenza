@@ -1,3 +1,4 @@
+import { Currency } from '../../currencies/interfaces/currency';
 
 export interface TransactionType {
     id?:number;
@@ -14,10 +15,3 @@ interface Pivot {
 
 }
 
-interface Currency {
-    id:number;
-    name: string;
-    symbol: string;
-    status: string;
-    value: number;
-}

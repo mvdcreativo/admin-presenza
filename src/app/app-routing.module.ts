@@ -28,6 +28,7 @@ const routes: Routes = [
       { path: 'usuarios', loadChildren: () => import('./pages/users/users.module').then(m => m.UsersModule) },
       { path: 'tipos-de-gastos', loadChildren: () => import('./pages/type-expense/type-expense.module').then(m => m.TypeExpenseModule) },
       
+      { path: 'transacciones', loadChildren: () => import('./pages/transactions/transactions.module').then(m => m.TransactionsModule) },
       
       { path: '', loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule) },
       { path: '**', loadChildren: () => import('./pages/not-found/not-found.module').then(m => m.NotFoundModule) },

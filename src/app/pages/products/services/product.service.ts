@@ -127,12 +127,21 @@ export class ProductService {
     )
   }
 
-
-
   public getOptionsSelect(): Observable<OptionSelect[]> {
     return this.http.get<OptionSelect[]>(this.urlUtils + 'forms.json')
   }
 
+
+  getProductsUser(id) : Observable<Product[]>{
+    return this.http.get<Response>(`${environment.API}${environment.routesCRUD.properties_user}/${id}`).pipe(map(
+      res => {
+        const resp = res.data
+        return resp;
+      }
+    )
+    
+    )
+  }
 
   openSnackBar(message: string, refClass:string, action: string = '') {
     this.snackBar.open(message, action, {

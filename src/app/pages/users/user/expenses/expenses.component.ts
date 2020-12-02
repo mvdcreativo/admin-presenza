@@ -15,6 +15,8 @@ import { Validators } from '@angular/forms';
 import { CurrencyService } from 'src/app/pages/currencies/services/currency.service';
 import { Currency } from 'src/app/pages/currencies/interfaces/currency';
 import { OptionSelect } from 'src/app/shared/components/dinamic-form/interfaces/fields';
+import { ProductService } from 'src/app/pages/products/services/product.service';
+import { Product } from 'src/app/pages/products/interfaces/product';
 
 
 @Component({
@@ -52,6 +54,7 @@ export class ExpensesComponent implements OnInit {
   // expenses: Observable<ExpensesPropertiesUsers>[];
   optionsTypesExpense: any;
   currencies: OptionSelect[];
+  propertiesUser: OptionSelect[] = [];
 
   paginatorChange(e: PageEvent) {
     console.log(e);
@@ -66,8 +69,8 @@ export class ExpensesComponent implements OnInit {
     private router: Router,
     private expenseService: ExpensesService,
     public dialog: MatDialog,
-    public currencyService: CurrencyService
-
+    public currencyService: CurrencyService,
+    public productService: ProductService
 
   ) {
 
@@ -94,11 +97,29 @@ export class ExpensesComponent implements OnInit {
       }))
       .subscribe(res=> this.currencies = res),
       //suscribimos a el usuario que esta siendo editado
+
       this.userService.userOnEdit.subscribe(user=> {
         this.userEdit = user
         if(this.userEdit){
           this.expenseService.setUserEdit(this.userEdit.id)
+
+          //obtiene las propiedades que tiene el usuario
+          this.subscroptions.push(
+            this.productService.getProductsUser(this.userEdit.id).pipe(
+              map(v=> v.map(v=> {return {name: v.title, value: v.id}}))
+            ).subscribe(
+              res=> {
+                this.propertiesUser = res
+                console.log(this.propertiesUser)
+              }
+              
+            )
+          )
+          /////////
+
+          //obtiene los gastos que tiene el usuario
           this.getExpensesUser(this.pageDefault, this.perPage, this.filter, this.orden) 
+          /////////////
         }
       })
 
@@ -214,8 +235,7 @@ export class ExpensesComponent implements OnInit {
         { nameControl: 'id', type: 'hidden', value: elementEdit?.id, label: 'Id' },
         { nameControl: 'user_id', type: 'hidden', value: this.userEdit.id, label: 'User ID' },
         { nameControl: 'expense_id', type: 'select', value: elementEdit?.expense_id, label: 'Tipo de Gasto',options: this.optionsTypesExpense, validators: [Validators.required] },
-        { nameControl: 'property_name', type: 'autocomplete', value: elementEdit?.property, label: 'Propiedad', validators: [Validators.required]  },
-        { nameControl: 'property_id', type: 'hidden', value: elementEdit?.property_id, label: '', validators: [Validators.required]  },
+        { nameControl: 'property_id', type: 'select-mvd-col1--1', value: elementEdit?.property_id, label: 'Propiedad',options: this.propertiesUser, validators: [Validators.required]  },
         { nameControl: 'currency_id', type: 'select', value: elementEdit?.currency_id, label: 'Moneda', options: this.currencies, validators: [Validators.required] },
         { nameControl: 'value', type: 'text', value: elementEdit?.value, label: 'Valor', validators: [Validators.required] },
       ]

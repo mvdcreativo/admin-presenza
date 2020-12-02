@@ -1,20 +1,58 @@
-<div class="actions">
+<ng-container *ngIf="userEdit ; else userNotFound " >
+    <ng-container *ngIf="propertiesUser.length >=1; else sinPropiedades ">
+        <div class="actions">
+        
+            <button mat-flat-button (click)="openDialog()" color="primary" >
+                <mat-icon class="material-icons-round">add</mat-icon> Crear
+            </button>
+            <button mat-flat-button routerLink="/" color="" class="btn-simple">
+                <mat-icon class="material-icons-round">print</mat-icon> Imprimir
+            </button>
+            <button mat-flat-button routerLink="/" color="" class="btn-simple">
+                <mat-icon class="material-icons-round">save_alt</mat-icon> Exportar
+            </button>
+        
+        </div>
+        <mvd-input-search (changeSearch)="search($event)" [noteFilterBy]="'Filtra múltiples campos'" ></mvd-input-search>
+        
+        
+    
+        <mvd-data-table *ngIf="dataSource" [columns]="columns" [dataSource]="dataSource | async" (actionChange)="itemAction($event)" ></mvd-data-table>
+        <mat-paginator (page)="paginatorChange($event)" [length]="totalResut | async" [pageSize]="perPage" [pageSizeOptions]="[20,50,100]" showFirstLastButtons></mat-paginator>
 
-    <button mat-flat-button (click)="openDialog()" color="primary">
-        <mat-icon class="material-icons-round">add</mat-icon> Crear
-    </button>
-    <button mat-flat-button routerLink="/" color="" class="btn-simple">
-        <mat-icon class="material-icons-round">print</mat-icon> Imprimir
-    </button>
-    <button mat-flat-button routerLink="/" color="" class="btn-simple">
-        <mat-icon class="material-icons-round">save_alt</mat-icon> Exportar
-    </button>
+    </ng-container>
+    
 
-</div>
-<mvd-input-search (changeSearch)="search($event)" [noteFilterBy]="'Filtra múltiples campos'" ></mvd-input-search>
+</ng-container>
+<ng-template #userNotFound>
+    <h3>Aún no existe el usuario</h3>
+    <ul>
+        <li>1) Termine de crear el usuario</li>
+        <li>2) Asigne propiedades al usuario:
+            <ul>
+                <li>OPCION 1. Cree o actualice una propiedad con este usuario como propietario</li>
+                <li>OPCION 2. Cree una transacción con este usuario como cliente (arrendatario o comprador)</li>  
+            </ul>
+        </li>
+        
+    </ul>
+</ng-template>
+<ng-template #sinPropiedades>
+    <h3>Aún no tiene propiedades asignadas</h3>
+    <h4>Asignar al menos una propiedad: </h4>
+    <ul>
+        <li>Asignar propiedades al usuario:
+            <ul>
+                <li>OPCION 1. Cree o actualice una propiedad con este usuario como propietario</li>
+                <li>OPCION 2. Cree una transacción con este usuario como cliente (arrendatario o comprador)</li>  
+            </ul>
+        </li>
+        
+    </ul>
+</ng-template>
 
 
 
 
-<mvd-data-table *ngIf="dataSource" [columns]="columns" [dataSource]="dataSource | async" (actionChange)="itemAction($event)" ></mvd-data-table>
-<mat-paginator (page)="paginatorChange($event)" [length]="totalResut | async" [pageSize]="perPage" [pageSizeOptions]="[20,50,100]" showFirstLastButtons></mat-paginator>
+
+

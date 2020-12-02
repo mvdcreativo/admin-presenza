@@ -97,8 +97,32 @@ export class UserService {
 
 
   ///listar
-  getUsers(currentPage = 1, perPage = 20, filter='', sort= 'desc') : Observable<ResponsePaginate>{
+  getUsers(currentPage = 1, perPage = 20, filter='', sort= 'desc', include = null) : Observable<ResponsePaginate>{
     return this.http.get<ResponsePaginate>(`${environment.API}${environment.routesCRUD.users}`, {
+      params: new HttpParams()
+        .set('page', currentPage.toString())
+        .set('filter', filter)
+        .set('sort', sort)
+        .set('per_page', perPage.toString())
+        .set('with', include.toString())
+
+
+    }).pipe(map(
+      res => {
+        console.log(res);
+        
+        this.setUserOnEdit(null)
+        this.setItems(res)
+        const resp = res
+        return resp;
+      }
+    )
+    
+    )
+  }
+
+  getUsersOwner(currentPage = 1, perPage = 20, filter='', sort= 'desc') : Observable<ResponsePaginate>{
+    return this.http.get<ResponsePaginate>(`${environment.API}owner_users`, {
       params: new HttpParams()
         .set('page', currentPage.toString())
         .set('filter', filter)
@@ -109,8 +133,6 @@ export class UserService {
       res => {
         console.log(res);
         
-        this.setUserOnEdit(null)
-        this.setItems(res)
         const resp = res
         return resp;
       }
