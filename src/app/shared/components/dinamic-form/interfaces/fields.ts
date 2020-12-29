@@ -6,6 +6,7 @@ export interface Fields {
     value?:any;
     options?:OptionSelect[];
     validators?:any[];
+    class?:string;
 }
 
 export interface OptionSelect {

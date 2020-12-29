@@ -169,7 +169,7 @@ export class FeaturesComponent implements OnInit {
 
     const fields = [
       { nameControl: 'id', type: 'hidden', value: elementEdit?.id, label: 'Id' },
-      { nameControl: 'feature_id', type: 'select', value: elementEdit?.feature_id, label: 'Grupo', options: this.featuresOption, validators: [Validators.required] },
+      { nameControl: 'feature_id', type: 'select', value: elementEdit?.feature_id, label: 'Grupo', options: this.featuresOption },
       { nameControl: 'type', type: 'select', value: elementEdit?.type, label: 'Tipo valor', options: this.typeOptions, validators: [Validators.required] },
       { nameControl: 'name', type: 'text', value: elementEdit?.name, label: 'Nombre', validators: [Validators.required] },  
     ]

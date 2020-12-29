@@ -50,6 +50,11 @@
                     "value": "VAL100",
                     "name": "Rangos de m2 'VAL100'"
                 }
+                ,
+                {
+                    "value": "GRP",
+                    "name": "Grupo 'GRP'"
+                }
             ]
         
         }

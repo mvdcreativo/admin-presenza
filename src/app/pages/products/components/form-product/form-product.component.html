@@ -84,6 +84,11 @@
         <mat-label>Longitud</mat-label>
         <input formControlName="longitude" matInput placeholder="Longitud">
     </mat-form-field>
+
+    <mat-form-field class="mvd-col1--1" appearance="outline">
+        <mat-label>Descripción</mat-label>
+        <textarea formControlName="description" style="min-height:200px " matInput placeholder="Descripción"></textarea>
+    </mat-form-field>
     <span>
         <button mat-flat-button color="primary" (click)="onSubmit()">Sigiente</button>
     </span>
