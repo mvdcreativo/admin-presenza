@@ -19,6 +19,7 @@ export const environment = {
     currencies: "currencies",
     users: "users",
     expenses: "expenses",
+    transactions: "transactions",
     properties_user: "properties_user"
 
   }
