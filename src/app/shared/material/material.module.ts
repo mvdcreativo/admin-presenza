@@ -38,7 +38,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
   imports: [
     CommonModule,
     MatMomentDateModule,
-    ColorPickerModule
+    ColorPickerModule,
+    MatCardModule
     
   ],
   exports: [
@@ -71,7 +72,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     ColorPickerModule,
     MatChipsModule,
     MatMenuModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    
   ]
 })
 export class MaterialModule { }

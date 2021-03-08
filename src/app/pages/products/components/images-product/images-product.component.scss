@@ -10,3 +10,18 @@
         padding: 10px 50px;
     }
 }
+.video{
+    box-shadow: none;
+    form{
+        display: flex;
+        .video-url{
+            width: 40%;
+            min-width: 200px;
+        }
+        .btn{
+            margin-top: 10px;
+            margin-left: 10px;
+            height: 35px;
+        }
+    }
+}

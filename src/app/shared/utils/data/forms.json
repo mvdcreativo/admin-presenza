@@ -3,59 +3,125 @@
             
             "estado_propiedad": [
                 {
-                    "value": 1,
+                    "value": "Rergular",
+                    "name": "Rergular"
+                },
+                {
+                    "value": "A Refaccionar",
+                    "name": "A Refaccionar"
+                },
+                {
+                    "value": "Reciclado",
+                    "name": "Reciclado"
+                },
+                {
+                    "value": "Bueno",
                     "name": "Bueno"
                 },
                 {
-                    "value": 2,
-                    "name": "A estrenar"
+                    "value": "Muy Bueno",
+                    "name": "Muy Bueno"
                 },
                 {
-                    "value": 3,
-                    "name": "Exelente"
-                },
-                {
-                    "value": 4,
-                    "name": "Para reciclar"
-                },
-                {
-                    "value": 5,
-                    "name": "Malo"
-                },
-                {
-                    "value": 6,
-                    "name": "Detalles"
-                },
-                {
-                    "value": 7,
-                    "name": "Con mejoras"
+                    "value": "Excelente",
+                    "name": "Excelente"
                 }
             ],
         
+            "orientations": [
+                {
+                    "value": "Sur",
+                    "name": "Sur"
+                },
+                {
+                    "value": "Norte",
+                    "name": "Norte"
+                },
+                {
+                    "value": "Este",
+                    "name": "Este"
+                },
+                {
+                    "value": "Oeste",
+                    "name": "Oeste"
+                }
+            ],
         
             "feature_type_valor": [
                 {
                     "value": "OPC",
-                    "name": "Check 'OPC'"
+                    "name": "Check"
                 },
                 {
                     "value": "VAL",
-                    "name": "Campo de texto 'VAL'"
+                    "name": "Campo de texto"
                 },
                 {
                     "value": "VALSTR",
-                    "name": "Selec. Condición Prop 'VALSTR'"
+                    "name": "Opciones status prop"
                 },
                 {
                     "value": "VAL100",
-                    "name": "Rangos de m2 'VAL100'"
-                }
-                ,
+                    "name": "Opciones Rangos de m2"
+                },
+                {
+                    "value": "CAPVEH",
+                    "name": "Opciones cap. de vehículos"
+                },
+                {
+                    "value": "VALANO",
+                    "name": "Opciones rangos años"
+                },
+                {
+                    "value": "EXPENS",
+                    "name": "Opciones expensas"
+                },
+                {
+                    "value": "ORIENT",
+                    "name": "Opciones Orientaciones"
+                },
+                {
+                    "value": "SITHAB",
+                    "name": "Opciones Situación Habitacional"
+                },
+                {
+                    "value": "DISPOS",
+                    "name": "Opciones para Disposición"
+                },
                 {
                     "value": "GRP",
                     "name": "Grupo 'GRP'"
                 }
+            ],
+
+            "sit_hab": [
+                {
+                    "value": "Habitada",
+                    "name": "Habitada"
+                },
+                {
+                    "value": "Desocupada",
+                    "name": "Desocupada"
+                }
+            ],
+
+            "disposicion": [
+                {
+                    "value": "Frente",
+                    "name": "Frente"
+                },
+                {
+                    "value": "Fondo",
+                    "name": "Fondo"
+                },
+                {
+                    "value": "Contrafrente",
+                    "name": "Contrafrente"
+                },
+                {
+                    "value": "Medio",
+                    "name": "Medio"
+                }
             ]
-        
         }
     }

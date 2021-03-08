@@ -1,4 +1,22 @@
 <mvd-images-drag-drop></mvd-images-drag-drop>
+
+<div fxFlex="100" class="video">
+    <h2>Enlace a video</h2>
+    
+        <form [formGroup]="form">
+
+            <mat-form-field class="video-url" appearance="outline">
+                <mat-label>Url Video</mat-label>
+                <input formControlName="video" matInput placeholder="Url Video">
+            </mat-form-field>
+            <button class="btn" mat-flat-button color="primary" (click)="saveVideoUrl()">Guardar</button>
+
+        </form>
+    
+</div>
+
+
+
 <span class="button-content">
-    <button mat-flat-button color="primary" type="submit" [routerLink]="['/productos']"  >Finalizar</button>
+    <button mat-flat-button color="primary" type="submit" [routerLink]="['/productos']">Finalizar</button>
 </span>

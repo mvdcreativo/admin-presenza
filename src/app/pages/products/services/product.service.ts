@@ -6,7 +6,6 @@ import { environment } from "src/environments/environment";
 
 import { Product, Response, ResponsePaginate, OptionSelect } from "../interfaces/product";
 import { map, take, catchError } from 'rxjs/operators';
-import { PageEvent } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 

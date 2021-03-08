@@ -1,40 +1,95 @@
 <form [formGroup]="form" *ngIf="features">
-    <span >
-        <section formArrayName="features" *ngFor="let featureGroup of form.get('features')['controls']; let i=index" class="featureGroup">
+    <span>
+        <section formArrayName="features" *ngFor="let featureGroup of form.get('features')['controls']; let i=index"
+            class="featureGroup">
             <h2>{{ features[i].name }}</h2>
 
             <div class="content-group">
-                <div [formArrayName]="i" *ngFor="let feature of form.get(['features', i])['controls'] ; let j=index" >
+                <div [formArrayName]="i" *ngFor="let feature of form.get(['features', i])['controls'] ; let j=index">
                     <span [formGroupName]="j">
+                        <!-- CheckBox -->
                         <div *ngIf="features[i].features[j].type === 'OPC'" class="checkbox">
                             <mat-checkbox formControlName="check">
                                 {{ features[i].features[j].name }}
                             </mat-checkbox>
-                            <input formControlName="feature_id"  type="hidden">
+                            <input formControlName="feature_id" type="hidden">
                         </div>
-    
-                        <div *ngIf="features[i].features[j].type !== 'OPC'  && features[i].features[j].id !== 18 ">
-                            <input formControlName="feature_id"  type="hidden">
-    
+                        <!--  -->
+                        <!-- Valor gral -->
+                        <div *ngIf="features[i].features[j].type === 'VAL' 
+                        || features[i].features[j].type === 'VAL100' 
+                        || features[i].features[j].type === 'VALANO'                         
+                        || features[i].features[j].type === 'EXPENS'                         
+                        || features[i].features[j].type === 'CAPVEH'                         
+                        ">
+                            <input formControlName="feature_id" type="hidden">
+
                             <mat-form-field class="" appearance="outline">
                                 <mat-label>{{ features[i].features[j].name }}</mat-label>
-                                <input formControlName="value" [value]="" matInput [placeholder]="features[i].features[j].name">
+                                <input formControlName="value" [value]="" matInput
+                                    [placeholder]="features[i].features[j].name">
                             </mat-form-field>
                         </div>
-
-                        <div *ngIf="features[i].features[j].id === 18" >
-                            <input formControlName="feature_id"  type="hidden">
-
+                        <!--  -->
+                        <!-- estado de la propiedad -->
+                        <div *ngIf="features[i].features[j].type === 'VALSTR'">
+                            <input formControlName="feature_id" type="hidden">
 
                             <mat-form-field class="" appearance="outline">
-                                <mat-label>Status</mat-label>
+                                <mat-label>{{ features[i].features[j].name }}</mat-label>
                                 <mat-select formControlName="value">
                                     <mat-option> Selecciona...</mat-option>
-                                    <mat-option *ngFor="let status of optionsStatusProperty" [value]="status.value">{{ status.name }}</mat-option>
+                                    <mat-option *ngFor="let status of options.estado_propiedad" [value]="status.value">
+                                        {{
+                                        status.name }}</mat-option>
                                 </mat-select>
                             </mat-form-field>
-
                         </div>
+                        <!--  -->
+                        <!--  Orientación -->
+                        <div *ngIf="features[i].features[j].type === 'ORIENT'">
+                            <input formControlName="feature_id" type="hidden">
+
+                            <mat-form-field class="" appearance="outline">
+                                <mat-label>{{ features[i].features[j].name }}</mat-label>
+                                <mat-select formControlName="value">
+                                    <mat-option> Selecciona...</mat-option>
+                                    <mat-option *ngFor="let status of options.orientations" [value]="status.value">{{
+                                        status.name }}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <!--  -->
+
+                        <!--  Orientación -->
+                        <div *ngIf="features[i].features[j].type === 'SITHAB'">
+                            <input formControlName="feature_id" type="hidden">
+
+                            <mat-form-field class="" appearance="outline">
+                                <mat-label>{{ features[i].features[j].name }}</mat-label>
+                                <mat-select formControlName="value">
+                                    <mat-option> Selecciona...</mat-option>
+                                    <mat-option *ngFor="let status of options.sit_hab" [value]="status.value">{{
+                                        status.name }}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <!--  -->
+                        <!--  Disposicion -->
+                        <div *ngIf="features[i].features[j].type === 'DISPOS'">
+                            <input formControlName="feature_id" type="hidden">
+
+                            <mat-form-field class="" appearance="outline">
+                                <mat-label>{{ features[i].features[j].name }}</mat-label>
+                                <mat-select formControlName="value">
+                                    <mat-option> Selecciona...</mat-option>
+                                    <mat-option *ngFor="let status of options.disposicion" [value]="status.value">{{
+                                        status.name }}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <!--  -->
+
 
                     </span>
 

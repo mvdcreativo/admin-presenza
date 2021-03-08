@@ -17,7 +17,7 @@ export class FeaturesComponent implements OnInit, OnDestroy {
   features: Feature[];
   @Output() dataFeatures : EventEmitter<any> = new EventEmitter
  
-  optionsStatusProperty: OptionSelect[]
+  options: any;
 
   public form: FormGroup
   productEdit$: Observable<Product>;
@@ -29,7 +29,7 @@ export class FeaturesComponent implements OnInit, OnDestroy {
     private productServices: ProductService
   ) { 
     this.getFeatures();
-    this.optionsStatusProperty =  forms.selects.estado_propiedad //datos desde archivo json en shared/utils
+    this.options =  forms.selects//datos desde archivo json en shared/utils
  
   }
 
@@ -104,12 +104,14 @@ export class FeaturesComponent implements OnInit, OnDestroy {
     const formConcat = featuresArr.concat(...featuresArr.concat(...this.form.get('features').value))
     
     const form = formConcat
-    .filter( v =>  v.check === true || v.check !== null || v.value !== null)
+    .filter( v =>  v.check === true || v.value !== null)
     .map( v => {
       return {feature_id: v.feature_id, value: v.value}
     })
     
     const features = {features: form}
+    console.log(features);
+    
     this.dataFeatures.emit(features)
     
   }
