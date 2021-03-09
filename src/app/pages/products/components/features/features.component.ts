@@ -4,7 +4,7 @@ import { FeatureService } from 'src/app/shared/services/features/feature.service
 import { Feature, Product, OptionSelect } from '../../interfaces/product';
 import { FormBuilder, FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { take } from 'rxjs/operators';
-import forms  from '../../../../shared/utils/data/forms.json';
+import forms  from '../../../../../assets/data/forms.json';
 import { ProductService } from '../../services/product.service';
 
 

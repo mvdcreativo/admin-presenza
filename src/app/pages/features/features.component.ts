@@ -11,7 +11,7 @@ import { ModalReutilComponent } from 'src/app/shared/components/modals/modal-reu
 import { Validators } from '@angular/forms';
 import { FeaturesService } from "./services/features.service";
 import { Feature } from "./interfaces/feature";
-import forms  from '../../shared/utils/data/forms.json';
+import forms  from '../../../assets/data/forms.json';
 
 
 @Component({
