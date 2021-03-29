@@ -11,6 +11,8 @@ import { FeaturesComponent } from './components/features/features.component';
 import { ImagesDragDropComponent } from "./components/images-product/images-drag-drop/images-drag-drop.component";
 import { ImagesProductComponent } from './components/images-product/images-product.component';
 import { PublicationsModule } from '../publications/publications.module';
+import { AgmCoreModule } from '@agm/core';
+import { environment } from 'src/environments/environment';
 
 
 @NgModule({
@@ -26,7 +28,15 @@ import { PublicationsModule } from '../publications/publications.module';
     CommonModule,
     ProductsRoutingModule,
     SharedModule,
-    PublicationsModule
+    PublicationsModule,
+    
+    AgmCoreModule.forRoot({
+      apiKey: environment.API_KEY_GM,
+      libraries: ["places"]
+    }),
+  ],
+  exports: [
+    
   ]
 })
 export class ProductsModule { }

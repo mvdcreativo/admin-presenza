@@ -11,6 +11,7 @@ import { Response, ResponsePaginate } from 'src/app/shared/interfaces/response';
   providedIn: 'root'
 })
 export class UbicationService {
+  public apiKey = environment.API_KEY_GM;
 
   constructor(
     private http:HttpClient
@@ -39,5 +40,8 @@ export class UbicationService {
       map( v => v.data.data)
     );
   }
+
+
+  ////maps
 
 }

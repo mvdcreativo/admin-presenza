@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, OnDestroy, ElementRef, ViewChild, NgZone } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { StatusService } from "src/app/shared/services/status/status.service";
@@ -9,6 +9,8 @@ import { PropertyTypes, Product } from '../../interfaces/product';
 import { PropertyTypesService } from 'src/app/shared/services/property-type/property-types.service';
 import { ProductService } from '../../services/product.service';
 import { Subscription } from 'rxjs';
+import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
+import { Address } from 'ngx-google-places-autocomplete/objects/address';
 
 @Component({
   selector: 'mvd-form-product',
@@ -19,7 +21,20 @@ export class FormProductComponent implements OnInit, OnDestroy {
 
   // @Output()changeIndex : EventEmitter<number> = new EventEmitter
   @Output()dataSubmit : EventEmitter<any> = new EventEmitter
-  
+  @ViewChild('addressAutocomplete') addressAutocomplete: ElementRef;
+  @ViewChild("placesRef") placesRef : GooglePlaceDirective;
+    
+  public handleAddressChange(address: Address) {
+  console.log(address);
+
+  console.log("Lat:"+address.geometry.location.lat());
+  console.log("Long:"+address.geometry.location.lng());
+  this.lat = address.geometry.location.lat();
+  this.lng = address.geometry.location.lng();
+  this.form.get('address').setValue(address.name)
+  this.setCoords()     
+
+}
   
   public form: FormGroup
   statuses: Observable<Status[]>;
@@ -31,15 +46,21 @@ export class FormProductComponent implements OnInit, OnDestroy {
   productEdit$: Observable<Product>;
   subcriptor: Subscription;
   productEdit: Product;
+  public lat: number ;
+  public lng: number ;
+  public zoom: number = 15;
 
+  options = {
+    types: [],
+    componentRestrictions: { country: 'UY' }
+    };
 
   constructor(
     private fb: FormBuilder,
     private statusSetvice: StatusService,
     private ubicationService: UbicationService,
     private propertyTypeService: PropertyTypesService,
-    private productServices: ProductService
-
+    private productServices: ProductService,
   ) { 
     this.productEdit$ = this.productServices.productOnEdit
     this.subcriptor = this.productEdit$.subscribe(p => {this.productEdit = p; this.createForm()})
@@ -51,6 +72,7 @@ export class FormProductComponent implements OnInit, OnDestroy {
     // console.log(this.form.value);
     
     this.getPropertyType()
+    this.setCurrentLocation()
 
     this.states = this.ubicationService.getStates();
     this.cities = this.ubicationService.getCities();
@@ -123,4 +145,33 @@ export class FormProductComponent implements OnInit, OnDestroy {
   ngOnDestroy(){
     this.subcriptor.unsubscribe()
   }
+
+  public onMapClick(e:any){
+    console.log(e);
+    
+    this.lat = e.coords.lat;
+    this.lng = e.coords.lng; 
+    this.setCoords()     
+
+    
+  }
+  public onMarkerClick(e:any){
+    console.log(e);
+  }
+
+  public setCurrentLocation(){
+    if('geolocation' in navigator){
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.lat = position.coords.latitude;
+        this.lng = position.coords.longitude;  
+        this.setCoords()     
+      })
+    }
+  }
+  setCoords(){
+    this.form.get('latitude').setValue(this.lat)
+    this.form.get('longitude').setValue(this.lng)
+
+  }
+
 }

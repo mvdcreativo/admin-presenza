@@ -12,6 +12,9 @@ import { ConfirmComponent } from './components/modals/confirm/confirm.component'
 import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
 import { ModalReutilComponent } from './components/modals/modal-reutil/modal-reutil.component';
 import { DinamicFormComponent } from './components/dinamic-form/dinamic-form.component';
+import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
+import { AgmCoreModule } from '@agm/core';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,10 @@ import { DinamicFormComponent } from './components/dinamic-form/dinamic-form.com
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    PipesModule
+    PipesModule,
+    GooglePlaceModule,
+    
+
   ],
   exports: [
     MaterialModule,
@@ -41,6 +47,9 @@ import { DinamicFormComponent } from './components/dinamic-form/dinamic-form.com
     ModalLocationsComponent,
     ModalReutilComponent,
     DinamicFormComponent,
+    GooglePlaceModule,
+    
+    
   ]
 })
 export class SharedModule { }

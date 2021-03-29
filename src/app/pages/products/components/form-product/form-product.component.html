@@ -14,19 +14,14 @@
         <mat-label>Tipo de Propiedad</mat-label>
         <mat-select formControlName="property_type_id">
             <mat-option>Selecciona...</mat-option>
-            <mat-option *ngFor="let propertyType of propertyTypes | async" [value]="propertyType.id">{{ propertyType.name }}</mat-option>
+            <mat-option *ngFor="let propertyType of propertyTypes | async" [value]="propertyType.id">{{
+                propertyType.name }}</mat-option>
         </mat-select>
-      </mat-form-field>
-
-    <mat-form-field class="c1-1" appearance="outline">
-        <mat-label>Dirección</mat-label>
-        <input formControlName="address" matInput placeholder="Dirección">
     </mat-form-field>
 
     <mat-form-field class="" appearance="outline">
         <mat-label>Provincia</mat-label>
-        <mat-select placeholder="Seleccione Provincia..." formControlName="state"
-            (selectionChange)="onSelectState()">
+        <mat-select placeholder="Seleccione Provincia..." formControlName="state" (selectionChange)="onSelectState()">
             <mat-option *ngFor="let state of states | async" [value]="state.id">
                 {{state.name}}
             </mat-option>
@@ -35,10 +30,8 @@
 
     <mat-form-field class="" appearance="outline">
         <mat-label>Ciudad</mat-label>
-        <mat-select placeholder="Seleccione Ciudad..." formControlName="city"
-            (selectionChange)="onSelectCity()">
-            <mat-option *ngFor="let city of cities | async | filterCity: form.get('state').value"
-                [value]="city.id">
+        <mat-select placeholder="Seleccione Ciudad..." formControlName="city" (selectionChange)="onSelectCity()">
+            <mat-option *ngFor="let city of cities | async | filterCity: form.get('state').value" [value]="city.id">
                 {{city.name}}
             </mat-option>
         </mat-select>
@@ -48,8 +41,7 @@
         <mat-label>Municipalidad</mat-label>
         <mat-select placeholder="Seleccione Municipalidad..." formControlName="municipality"
             (selectionChange)="onSelectMunicipality()">
-            <mat-option
-                *ngFor="let municipality of municipalities | async | filterMunicipality: form.get('city').value"
+            <mat-option *ngFor="let municipality of municipalities | async | filterMunicipality: form.get('city').value"
                 [value]="municipality.id">
                 {{municipality.name}}
             </mat-option>
@@ -68,21 +60,44 @@
         </mat-select>
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
-        <mat-label>Status</mat-label>
-        <mat-select formControlName="status_id">
-          <mat-option *ngFor="let status of statuses | async" [value]="status.id">{{ status.name }}</mat-option>
-        </mat-select>
+    <mat-form-field class="c1-1" appearance="outline">
+        <mat-label>Dirección</mat-label>
+        <input formControlName="address" matInput placeholder="Dirección" ngx-google-places-autocomplete
+            #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" autocomplete="off" />
+
     </mat-form-field>
+
+
+    <!-- <mat-form-field appearance="outline" class="c1-1">
+        <mat-icon matPrefix class="mr-1 text-muted">location_on</mat-icon>
+        <mat-label>Dirección</mat-label>
+        <input matInput placeholder="Enter a location" formControlName="address" autocomplete="off" #addressAutocomplete> 
+        <button *ngIf="form.get('address').value" mat-button matSuffix mat-icon-button (click)="form.get('address').setValue(null)" type="button">
+          <mat-icon>close</mat-icon>
+        </button>
+        <mat-error *ngIf="form.get('address').errors?.required">Dirección requerida</mat-error>   
+    </mat-form-field> -->
+    <div class="c1-1">
+        <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [scrollwheel]="false" (mapClick)="onMapClick($event)">
+            <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+        </agm-map>
+    </div>
 
     <mat-form-field class="" appearance="outline">
         <mat-label>Latitud</mat-label>
-        <input formControlName="latitude" matInput placeholder="Latitud">
+        <input formControlName="latitude" matInput placeholder="Latitud" readonly>
     </mat-form-field>
 
     <mat-form-field class="" appearance="outline">
         <mat-label>Longitud</mat-label>
-        <input formControlName="longitude" matInput placeholder="Longitud">
+        <input formControlName="longitude" matInput placeholder="Longitud" readonly>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Status</mat-label>
+        <mat-select formControlName="status_id">
+            <mat-option *ngFor="let status of statuses | async" [value]="status.id">{{ status.name }}</mat-option>
+        </mat-select>
     </mat-form-field>
 
     <mat-form-field class="mvd-col1--1" appearance="outline">

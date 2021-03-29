@@ -7,6 +7,7 @@ export const environment = {
   API: "http://presenza_api_v1.test/api/",
   APIAuth: "http://presenza_api_v1.test/api/auth/",
 
+  API_KEY_GM : "AIzaSyBgkTr7pr2hwsa4Gkk499GLfcm01j0CsvQ",
 
   ////ROUTES API
   routesCRUD: {

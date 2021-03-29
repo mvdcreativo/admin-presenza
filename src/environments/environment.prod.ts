@@ -3,6 +3,7 @@ export const environment = {
   API: "https://api.presenza.picaworks.com/api/",
   APIAuth: "https://api.presenza.picaworks.com/api/auth/",
 
+  API_KEY_GM : "AIzaSyBgkTr7pr2hwsa4Gkk499GLfcm01j0CsvQ",
 
   ////ROUTES API
   routesCRUD: {
