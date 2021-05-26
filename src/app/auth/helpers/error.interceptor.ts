@@ -8,8 +8,8 @@ import { AuthService } from '../auth.service';
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
     constructor(private authService: AuthService) { }
-    retryDelay = 2000;
-    retryMaxAttempts = 2;
+    retryDelay = 500;
+    retryMaxAttempts = 1;
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(request)
@@ -27,6 +27,10 @@ export class ErrorInterceptor implements HttpInterceptor {
                         if (err.error.message === "Unauthorized") {
                             this.authService.errorSubject.next('Usuario o contraseña incorrectos')
                         }
+                    }
+                    
+                    if (err.status === 0) {
+                        return throwError(err);
                     }
                     if (count === this.retryMaxAttempts) {
                         return throwError(err);
