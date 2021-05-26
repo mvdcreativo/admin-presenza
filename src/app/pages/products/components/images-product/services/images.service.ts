@@ -43,7 +43,7 @@ export class ImagesService {
 
     const formData = new FormData();
     console.log(files);
-    const position = data.images.length -1;
+    const position = data?.images?.length -1;
 
     for (let i = 0; i < files.length; i++) {
       formData.append('images[]', files[i])

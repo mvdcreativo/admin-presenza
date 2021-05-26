@@ -5,7 +5,7 @@
                     <img [src]="'../../../../../../assets/images/no-image.svg'" alt="Subir Imagen">
             </div>
         </label>
-        <input id="file" hidden type="file" (change)="uploadImage($event)" multiple >
+        <input id="file" hidden type="file" (change)="uploadImage($event)" accept="image/*" multiple >
     </div>
     <div class="instructions">
 
