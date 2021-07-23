@@ -26,7 +26,7 @@ export class ImagesProductComponent implements OnInit {
     this.productEdit$.subscribe(res=> {
       this.product = res
 
-      this.form ? this.form.get('video').setValue(this.product.videos[0].url): this.form.get('video').setValue(null)
+      this.form ? this.form.get('video').setValue(this.product?.videos[0]?.url): this.form.get('video').setValue(null)
 
     })
   }

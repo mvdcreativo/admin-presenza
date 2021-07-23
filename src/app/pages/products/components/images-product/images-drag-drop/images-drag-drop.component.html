@@ -6,6 +6,7 @@
             </div>
         </label>
         <input id="file" hidden type="file" (change)="uploadImage($event)" accept="image/*" multiple >
+        
     </div>
     <div class="instructions">
 
@@ -22,8 +23,7 @@ mode="determinate"
     
     <ng-container *ngIf=" (loadingImage$|async) == false ; else loading">
         <div class="box" *ngFor="let image of images" cdkDrag (mouseover)= "showDelete = true" (mouseleave)="showDelete = false" >
-            <mat-icon (click)="removeImage(image.id)" *ngIf="showDelete" class="delete-image" color="warn">delete</mat-icon>
-            <img [src]="image.url || '../../../../../../assets/images/no-image.svg'" alt="">
+            <mvd-thumbnail [image]="image" [showDelete]="showDelete" (removeImage)="removeImage($event)" (updateRotateImage)="updateRotateImage($event)" ></mvd-thumbnail>
         </div>
     </ng-container>
     

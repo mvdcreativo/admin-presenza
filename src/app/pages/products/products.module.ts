@@ -13,6 +13,8 @@ import { ImagesProductComponent } from './components/images-product/images-produ
 import { PublicationsModule } from '../publications/publications.module';
 import { AgmCoreModule } from '@agm/core';
 import { environment } from 'src/environments/environment';
+import { ImagesComponent } from './components/images/images.component';
+import { ThumbnailComponent } from './components/images-product/images-drag-drop/thumbnail/thumbnail.component';
 
 
 @NgModule({
@@ -22,7 +24,9 @@ import { environment } from 'src/environments/environment';
     ProductComponent, 
     FeaturesComponent, 
     ImagesDragDropComponent,
-    ImagesProductComponent
+    ImagesProductComponent,
+    ImagesComponent,
+    ThumbnailComponent
   ],
   imports: [
     CommonModule,
@@ -37,6 +41,6 @@ import { environment } from 'src/environments/environment';
   ],
   exports: [
     
-  ]
+  ThumbnailComponent]
 })
 export class ProductsModule { }

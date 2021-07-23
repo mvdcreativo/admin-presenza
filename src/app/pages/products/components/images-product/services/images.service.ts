@@ -5,6 +5,7 @@ import { Product, Response } from "./../../../interfaces/product";
 import { ProductService } from '../../../services/product.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { take, map } from 'rxjs/operators';
+import { Image } from './../../../interfaces/product';
 
 @Injectable({
   providedIn: 'root'
@@ -33,10 +34,11 @@ export class ImagesService {
 
   }
 
-  updateImage(data) {
-    data.map(
-      d => this.http.put(`${environment.API}images/${d.id}`, d).pipe(take(1)).subscribe()
-    )
+  updateImage(data): Observable<Image> {
+
+    return this.http.put<Response>(`${environment.API}images/${data.id}`, data).pipe(map(v=>v.data))
+    
+
   }
 
   uploadImage(data: Product, files: FileList, index?: number) {

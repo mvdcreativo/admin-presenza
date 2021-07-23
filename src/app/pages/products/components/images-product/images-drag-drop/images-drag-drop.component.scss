@@ -70,22 +70,8 @@
     background: white;
     position: relative;
 
-    img{
-        width:72px;
-        height:72px;
-        object-fit: cover;
-        z-index: 100;
-        &:hover{
-            opacity: 0.5;
-        }
-    }
-    .delete-image{
-        cursor: pointer;
-        position: absolute;
-        top: 3px;
-        right: 3px;
-        z-index: 200;
-    }
+
+
   }
   
   .cdk-drag-preview {
