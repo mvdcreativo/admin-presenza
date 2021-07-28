@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
@@ -28,7 +29,6 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/materia
     LayoutModule,
     SharedModule,
     AuthModule,
-
   ],
   exports: [
    
@@ -36,9 +36,14 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/materia
   providers: [
 
     indexAuthInterceptor,
-    {provide: MAT_DATE_LOCALE, useValue: 'es-UY'},
+    {
+      provide: [MAT_DATE_LOCALE, LocationStrategy],
+      useValue: 'es-UY',
+      useClass: HashLocationStrategy
+    },
 
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
