@@ -10,14 +10,34 @@
 
     </ng-container>
   
-    <ng-container *ngIf="field.type === 'select'">
+    <ng-container *ngIf="field.type === 'select' && field.nameControl !== 'property_id'">
         <mat-form-field class="" appearance="outline">
             <mat-label>{{ field.label }}</mat-label>
-            <mat-select placeholder="Seleccione Ciudad..." [formControlName]="field.nameControl">
+            <mat-select [placeholder]="field.label" [formControlName]="field.nameControl">
                 <mat-option *ngFor="let opt of field.options"
                     [value]="opt.value">
                     {{opt.name}}
                 </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </ng-container>
+
+    <ng-container *ngIf="field.type === 'select' && field.nameControl === 'property_id'">
+        <mat-form-field class="" appearance="outline">
+            <mat-label>{{ field.label }}</mat-label>
+            <mat-select [placeholder]="field.label" [formControlName]="field.nameControl">
+                <ng-container *ngIf="optPropertiesOwner?.length >= 1;else noOption">
+                    <mat-option *ngFor="let opt of optPropertiesOwner"
+                        [value]="opt.value">
+                        {{opt.name}}
+                    </mat-option>
+                </ng-container>
+                <ng-template #noOption>
+                    <mat-option
+                        value="">
+                        Debe seleccionar un propietrio primero
+                    </mat-option>
+                </ng-template>
             </mat-select>
         </mat-form-field>
     </ng-container>

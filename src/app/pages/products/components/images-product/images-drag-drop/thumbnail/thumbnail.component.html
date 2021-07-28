@@ -1,5 +1,5 @@
 <ng-container *ngIf="image">
     <mat-icon (click)="remove(image.id)" *ngIf="showDelete" class="delete-image" color="warn">delete</mat-icon>
     <mat-icon (click)="rotateImage()" *ngIf="showDelete" class="rotate-image" color="primary">rotate_right</mat-icon>
-    <img *ngIf="url" [ngStyle]="{'transform': 'rotate(' + rotate + 'deg)'}" [src]="url || '../../../../../../assets/images/no-image.svg'" alt="">
+    <img *ngIf="url" [ngStyle]="{'transform': 'rotate(' + rotate + 'deg)'}" [src]="image.url_small || '../../../../../../assets/images/no-image.svg'" alt="">
 </ng-container>

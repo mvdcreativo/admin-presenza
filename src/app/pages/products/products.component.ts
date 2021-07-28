@@ -71,7 +71,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
 
   getProducts(currentPage?, perPage?, filter?, sort?) {
-    this.subscroption = this.productService.getProducts(currentPage, perPage, filter, sort).subscribe(next => this.loadData());
+    this.subscroption = this.productService.getProducts(currentPage, perPage, filter, '', sort).subscribe(next => this.loadData());
   }
 
   loadData() {

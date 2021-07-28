@@ -10,6 +10,7 @@ import { ModalReutilComponent } from 'src/app/shared/components/modals/modal-reu
 import { ResponsePaginate } from 'src/app/shared/interfaces/response';
 import { Currency } from '../currencies/interfaces/currency';
 import { CurrencyService } from '../currencies/services/currency.service';
+import { ProductService } from '../products/services/product.service';
 import { TransactionType } from '../transaction-types/interfaces/transaction-type';
 import { TransactionTypesService } from '../transaction-types/services/transaction-types.service';
 import { User } from '../users/interfaces/user';
@@ -29,9 +30,11 @@ export class TransactionsComponent implements OnInit {
   ////COLUMNAS TABLA
   public columns: Column[] = [
     { title: 'ID', col: 'id' },
-    { title: 'Fecha', col: 'created_at' },
+    { title: 'Fecha', col: 'created_at', pipe: 'd/MM/yyy' },
     { title: 'Tipo de transacción', col: 'transaction_type_name' },
     { title: 'Comprador/Inquilino', col: 'user_customer_name' },
+    { title: 'Inicio', col: 'date_ini', pipe: 'd/MM/yyy' },
+    { title: 'Vencimiento', col: 'date_end', pipe: 'd/MM/yyy' },
 
   ]
 
@@ -45,7 +48,7 @@ export class TransactionsComponent implements OnInit {
   filter: string = '';
   result: Observable<ResponsePaginate>;
   subscroption: Subscription[]=[];
-  statuses: OptionSelect[];
+  propertiesSelect: OptionSelect[];
 
   fields: Fields[]
   transactionsTipes_select: OptionSelect[];
@@ -61,7 +64,8 @@ export class TransactionsComponent implements OnInit {
     public dialog: MatDialog,
     private transactionsTypeService: TransactionTypesService,
     private currencyService: CurrencyService,
-    private userServices: UserService
+    private userServices: UserService,
+    private ptoductService : ProductService
   ) {
     this.result = this.transactionsService.resultItems$
 
@@ -72,7 +76,7 @@ export class TransactionsComponent implements OnInit {
     this.subscroption.push(
       this.transactionsTypeService.getTransactionTypes().pipe(map(v => v.data.data)).subscribe(res=> this.transactionsTipes_select = res.map(v=> { return {name:v.name, value: v.id}})),
       this.currencyService.getCurrencies().subscribe(res => this.currencies_select = res.map(v=> { return {name:v.symbol, value: v.id}})),
-      this.userServices.getUsers( 1 , 100000, '', null, ['properties_owner']).pipe(map(v=> v.data.data )).subscribe(
+      this.userServices.getUsers( 1 , 100000, '', null).pipe(map(v=> v.data.data )).subscribe(
         res=> {
           console.log(res);
           
@@ -187,17 +191,18 @@ export class TransactionsComponent implements OnInit {
 
 
   setFields(elementEdit? : Transaction) {
+    console.log(elementEdit);
     
     const fields = [
       { nameControl: 'id', type: 'hidden', value: elementEdit?.id, label: 'Id' },
       { nameControl: 'user_owner_id', type: 'select', value: elementEdit?.user_owner_id, label: 'Propietario', options: this.owners_select, validators: [Validators.required] },
       { nameControl: 'user_customer_id', type: 'select', value: elementEdit?.user_customer_id, label: 'Comprador/Arrendatario', options: this.customer_select, validators: [Validators.required] },
-      { nameControl: 'property_id', type: 'select', value: elementEdit?.property_id, label: 'Propiedad', options: this.statuses, validators: [Validators.required] },
+      { nameControl: 'property_id', type: 'select', value: elementEdit?.property_id, label: 'Propiedad', options: null, validators: [Validators.required] },
       { nameControl: 'transaction_type_id', type: 'select', value: elementEdit?.transaction_type_id, label: 'Tipo de transacción', options: this.transactionsTipes_select, validators: [Validators.required] },
       { nameControl: 'currency_id', type: 'select', value: elementEdit?.currency_id, label: 'Moneda', options: this.currencies_select, validators: [Validators.required] },
       { nameControl: 'value', type: 'number', value: elementEdit?.value, label: 'Valor', validators: [Validators.required] },
-      { nameControl: 'date_ini', type: 'date', value: elementEdit?.date_ini, label: 'Fecha inicio',  validators: [Validators.required] },
-      { nameControl: 'date_end', type: 'date', value: elementEdit?.date_end, label: 'Facha vencimiento',  validators: [Validators.required] },
+      { nameControl: 'date_ini', type: 'date', value: elementEdit?.date_ini, label: 'Fecha inicio',  validators: null },
+      { nameControl: 'date_end', type: 'date', value: elementEdit?.date_end, label: 'Facha vencimiento',  validators: null },
     ]
 
     return fields

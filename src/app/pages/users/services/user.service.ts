@@ -97,7 +97,7 @@ export class UserService {
 
 
   ///listar
-  getUsers(currentPage = 1, perPage = 20, filter='', sort= 'desc', include = null) : Observable<ResponsePaginate>{
+  getUsers(currentPage = 1, perPage = 20, filter='', sort= 'desc', include = "") : Observable<ResponsePaginate>{
     return this.http.get<ResponsePaginate>(`${environment.API}${environment.routesCRUD.users}`, {
       params: new HttpParams()
         .set('page', currentPage.toString())

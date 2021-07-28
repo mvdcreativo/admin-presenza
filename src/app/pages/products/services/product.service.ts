@@ -104,11 +104,12 @@ export class ProductService {
 
 
 ///listar
-  getProducts(currentPage = 1, perPage = 20, filter='', sort= 'desc') : Observable<ResponsePaginate>{
+  getProducts(currentPage = 1, perPage = 20, filter='', owner_id= null, sort= 'desc') : Observable<ResponsePaginate>{
     return this.http.get<ResponsePaginate>(`${environment.API}${environment.routesCRUD.products}`, {
       params: new HttpParams()
         .set('page', currentPage.toString())
         .set('filter', filter)
+        .set('owner_id', owner_id)
         .set('sort', sort)
         .set('per_page', perPage.toString())
 

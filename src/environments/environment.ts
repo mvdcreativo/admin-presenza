@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  API: "http://presenza_api_v1.test/api/",
-  APIAuth: "http://presenza_api_v1.test/api/auth/",
+  API: "http://34.75.220.39/api/",
+  APIAuth: "http://34.75.220.39/api/auth/",
 
   // API: "https://api.presenza.picaworks.com/api/",
   // APIAuth: "https://api.presenza.picaworks.com/api/auth/",

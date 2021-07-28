@@ -37,6 +37,7 @@ export class DinamicFormComponent implements OnInit {
   imgPreview: string | ArrayBuffer;
   options: OptionSelect[];
   filterOptions: Observable<OptionSelect[]>;
+  optPropertiesOwner: OptionSelect[] = [];
     
   
   constructor(
@@ -67,7 +68,19 @@ export class DinamicFormComponent implements OnInit {
           return this._filter(value)
         })
         
-       }
+      }
+
+      if(this.form.get('user_owner_id')){
+        
+        this.form.get('user_owner_id').valueChanges
+        .subscribe( value=> {
+          console.log(value);
+          this.getPropertiesOwner(value)
+          
+        })
+        
+      }
+
 
       
     }
@@ -191,6 +204,27 @@ export class DinamicFormComponent implements OnInit {
           // return this.options.filter(option => option.toLowerCase().includes(filterValue));
         }
 
+        private getPropertiesOwner(ownerId: string) {
+      
+          const res = this.productService.getProducts(1,20,'', ownerId)
+          .pipe(
+            map( v=> {
+              const res = v.data.data
+              
+              return res.map( x=> {
+                if (res.length >= 1) {
+                  return {name: x?.address, value: x?.id}
+                }
+              })
+            })
+          )
+          .subscribe( res => {
+            if (res.length >= 1) {
+              this.optPropertiesOwner = res
+            }
+          })
+          
+        }
 
       }
       
