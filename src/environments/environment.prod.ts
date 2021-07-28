@@ -1,7 +1,10 @@
 export const environment = {
   production: true,
-  API: "https://api.presenza.picaworks.com/api/",
-  APIAuth: "https://api.presenza.picaworks.com/api/auth/",
+  // API: "https://api.presenza.picaworks.com/api/",
+  // APIAuth: "https://api.presenza.picaworks.com/api/auth/",
+
+  API: "http://34.75.220.39/api/",
+  APIAuth: "http://34.75.220.39/api/auth/",
 
   API_KEY_GM : "AIzaSyBgkTr7pr2hwsa4Gkk499GLfcm01j0CsvQ",
 
