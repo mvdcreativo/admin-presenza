@@ -57,6 +57,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; overflow: h
   --color-warn: rgb(211, 47, 47);
   --color-dark: rgb(33, 33, 33);
   --color-grey: rgb(221, 221, 221);
+  --color-yellow: rgb(214, 188, 38);
 
   --background-gral: #f7f7f7;
 }
@@ -95,7 +96,7 @@ a{
 .mat-form-field-outline-start, .mat-form-field-outline-gap, .mat-form-field-outline-end{
   background-color: var(--background-gral)!important;
   // border-color: white!important;
-  
+
 }
 
 //float level
@@ -173,15 +174,15 @@ a{
     }
   }
 
-/////////  
+/////////
 
 /////////USER MENU
 
   .desplegable{
     border-radius: 10px 10px 10px 10px!important;
-    
+
     margin-top: 0.5rem!important;
-  
+
   }
 
 
@@ -286,10 +287,10 @@ a{
     button{
       font-size: 12px;
       font-weight: 400;
-      
+
     }
     .mat-card-title{
-      
+
     }
     .mat-card-subtitle{
 
@@ -335,7 +336,7 @@ a{
 .mat-tab-body{
   padding-top: 1rem!important;
   min-height: calc(100vh - 270px) ;
-  
+
 }
 //////////////////
 
@@ -426,14 +427,14 @@ $font-item-menu : 14px;
       background-color: var(--color-primary)!important;
       color: white!important;
     }
-    
+
   }
   .router-link-active{
     border-radius: 0 50px 50px 0;
     background-color: var(--color-primary)!important;
     @include mat-elevation(3);
     color: white;
-    
+
   }
 
   .mat-expansion-panel{
@@ -461,7 +462,7 @@ $font-item-menu : 14px;
               padding-left: 1rem!important;
             }
         }
-  
+
     }
   }
 }

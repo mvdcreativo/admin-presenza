@@ -23,7 +23,7 @@ export class FormProductComponent implements OnInit, OnDestroy {
   @Output()dataSubmit : EventEmitter<any> = new EventEmitter
   @ViewChild('addressAutocomplete') addressAutocomplete: ElementRef;
   @ViewChild("placesRef") placesRef : GooglePlaceDirective;
-    
+
   public handleAddressChange(address: Address) {
   console.log(address);
 
@@ -32,10 +32,10 @@ export class FormProductComponent implements OnInit, OnDestroy {
   this.lat = address.geometry.location.lat();
   this.lng = address.geometry.location.lng();
   this.form.get('address').setValue(address.name)
-  this.setCoords()     
+  this.setCoords()
 
 }
-  
+
   public form: FormGroup
   statuses: Observable<Status[]>;
   states: Observable<any[]>;
@@ -61,7 +61,7 @@ export class FormProductComponent implements OnInit, OnDestroy {
     private ubicationService: UbicationService,
     private propertyTypeService: PropertyTypesService,
     private productServices: ProductService,
-  ) { 
+  ) {
     this.productEdit$ = this.productServices.productOnEdit
     this.subcriptor = this.productEdit$.subscribe(p => {this.productEdit = p; this.createForm()})
     // console.log(this.productEdit);
@@ -70,7 +70,7 @@ export class FormProductComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.getStatus()
     // console.log(this.form.value);
-    
+
     this.getPropertyType()
     this.setCurrentLocation()
 
@@ -83,16 +83,16 @@ export class FormProductComponent implements OnInit, OnDestroy {
   }
 
   createForm(){
- 
+
     // console.log(this.productEdit);
-    
+
     this.form = this.fb.group(
       {
         title:  [this.productEdit?.title, Validators.required],
         code:  [this.productEdit?.code, Validators.required],
         address:  [this.productEdit?.address, Validators.required] ,
         description:  [this.productEdit?.description] ,
-        status_id:  [this.productEdit?.status_id, Validators.required] ,
+        status_id: [this.productEdit?.status_id || 2, Validators.required],
         property_type_id:  [this.productEdit?.property_type_id, Validators.required] ,
         neighborhood_id:  [this.productEdit?.neighborhood_id, Validators.required] ,
         latitude:  [this.productEdit?.latitude] ,
@@ -148,12 +148,12 @@ export class FormProductComponent implements OnInit, OnDestroy {
 
   public onMapClick(e:any){
     console.log(e);
-    
-    this.lat = e.coords.lat;
-    this.lng = e.coords.lng; 
-    this.setCoords()     
 
-    
+    this.lat = e.coords.lat;
+    this.lng = e.coords.lng;
+    this.setCoords()
+
+
   }
   public onMarkerClick(e:any){
     console.log(e);
@@ -163,8 +163,8 @@ export class FormProductComponent implements OnInit, OnDestroy {
     if('geolocation' in navigator){
       navigator.geolocation.getCurrentPosition((position) => {
         this.lat = position.coords.latitude;
-        this.lng = position.coords.longitude;  
-        this.setCoords()     
+        this.lng = position.coords.longitude;
+        this.setCoords()
       })
     }
   }

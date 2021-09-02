@@ -20,3 +20,9 @@ form{
 agm-map{
     height: 400px;
 }
+.status-content{
+  width: 100%;
+  display: grid;
+  justify-content: end!important;
+  justify-items: end;
+}

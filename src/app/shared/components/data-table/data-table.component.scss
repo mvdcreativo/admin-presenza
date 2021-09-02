@@ -1,7 +1,13 @@
 
 
 .publish{
-    color: var(--color-success);
+  color: var(--color-success);
+}
+.pause{
+  color: var(--color-yellow);
+}
+.inactive{
+  color: var(--color-warn);
 }
 .mat-button{
     min-width: 0px!important;

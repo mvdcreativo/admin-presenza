@@ -34,9 +34,11 @@ export class DataTableComponent implements OnInit {
     public dialog: MatDialog,
     private router: Router
 
-  ) { 
+  ) {
+
+
     new MatTableDataSource(this.dataSource)
-    
+
   }
 
   ngOnInit(): void {
@@ -51,7 +53,7 @@ export class DataTableComponent implements OnInit {
       const action = {action: 'edit', element: element}
       this.actionChange.emit(action)
 
-    
+
   }
 
   isPageProduct(){
@@ -65,13 +67,13 @@ export class DataTableComponent implements OnInit {
   }
 
   openDialog(element):void {
-    let name 
+    let name
     if (element?.name) {
       name = element.name
     } else {
       name = element.title
     }
-    
+
     const dialogRef = this.dialog.open(ConfirmComponent, {
       width: '350px',
       data: {name: name, message: "", value: false}
@@ -83,10 +85,12 @@ export class DataTableComponent implements OnInit {
         this.actionChange.emit(action)
       }
     });
-    
+
   }
 
   publication(element){
+
+    console.log(element);
     if(element){
 
       this.router.navigate(['/productos/producto', element.id, 4])

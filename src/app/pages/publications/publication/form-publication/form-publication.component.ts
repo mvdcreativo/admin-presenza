@@ -20,7 +20,7 @@ import { PublicationsService } from '../../services/publications.service';
 })
 export class FormPublicationComponent implements OnInit, OnDestroy {
 
-  @Input() idPublication: number 
+  @Input() idPublication: number
   @Input() idProperty: number = null
   @Input() titlePropety: string = null
 
@@ -42,7 +42,7 @@ export class FormPublicationComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private router: Router
 
-  ) { 
+  ) {
   }
 
 
@@ -61,7 +61,7 @@ export class FormPublicationComponent implements OnInit, OnDestroy {
     const requestUrl = this.router.url.split("/")
     this.urlReturn = requestUrl.slice(0,2).join("/");
     console.log(this.urlReturn);
-    
+
     if(requestUrl[1] === "productos") return true;
     return false
   }
@@ -97,8 +97,8 @@ export class FormPublicationComponent implements OnInit, OnDestroy {
         status_id: this.publicationEdit?.status_id,
       })
       this.buildTransactionTypes()
-      console.log(this.form.value);
-      
+      // console.log(this.form.value);
+
     }
 
   }
@@ -115,7 +115,7 @@ export class FormPublicationComponent implements OnInit, OnDestroy {
         }
       )
 
-      
+
     }else{
       return this.fb.array([])    }
   }
@@ -136,19 +136,19 @@ export class FormPublicationComponent implements OnInit, OnDestroy {
 
   dataSubmit() {
     console.log(this.form.value);
-    
+
     const data = this.form.value
     if (this.publicationEdit) {
 
       if (data.transaction_types.length >= 1) {
         this.updatePublication(data)
-        
+
       } else {
         this.deletePublication(this.publicationEdit.id)
       }
     } else {
 
-      
+
       this.addPublication(data)
 
     }

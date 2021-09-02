@@ -10,8 +10,8 @@ import { AuthGuard } from './auth/guards/auth.guard';
 const routes: Routes = [
   { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
 
-  { 
-    path: '', 
+  {
+    path: '',
     component: PagesComponent,
     children: [
       { path: 'productos', loadChildren: () => import('./pages/products/products.module').then(m => m.ProductsModule) },
@@ -27,9 +27,9 @@ const routes: Routes = [
       { path: 'clientes', loadChildren: () => import('./pages/users/users.module').then(m => m.UsersModule) },
       { path: 'usuarios', loadChildren: () => import('./pages/users/users.module').then(m => m.UsersModule) },
       { path: 'tipos-de-gastos', loadChildren: () => import('./pages/type-expense/type-expense.module').then(m => m.TypeExpenseModule) },
-      
+
       { path: 'transacciones', loadChildren: () => import('./pages/transactions/transactions.module').then(m => m.TransactionsModule) },
-      
+
       { path: '', loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule) },
       { path: '**', loadChildren: () => import('./pages/not-found/not-found.module').then(m => m.NotFoundModule) },
     ],
@@ -42,7 +42,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{useHash:true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

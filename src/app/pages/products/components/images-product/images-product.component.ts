@@ -17,7 +17,7 @@ export class ImagesProductComponent implements OnInit {
     private fb: FormBuilder,
     private productServices: ProductService
 
-  ) { 
+  ) {
     this.productEdit$ = this.productServices.productOnEdit
     this.crateForm();
   }
@@ -25,8 +25,11 @@ export class ImagesProductComponent implements OnInit {
   ngOnInit(): void {
     this.productEdit$.subscribe(res=> {
       this.product = res
-
-      this.form ? this.form.get('video').setValue(this.product?.videos[0]?.url): this.form.get('video').setValue(null)
+      if(this.form && this.product?.videos === [] ){
+        this.form.get('video').setValue(this.product?.videos[0]?.url)
+      }else{
+        this.form.get('video').setValue(null)
+      }
 
     })
   }
@@ -36,14 +39,14 @@ export class ImagesProductComponent implements OnInit {
     this.form = this.fb.group({
       video:[null, Validators.required]
     })
-    
+
   }
 
   form: FormGroup;
- 
+
   saveVideoUrl(){
     this.form.valid ? this.updateProductVideo() : false
-    
+
   }
 
   updateProductVideo(){

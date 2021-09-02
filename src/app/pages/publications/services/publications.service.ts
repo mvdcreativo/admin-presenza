@@ -24,11 +24,11 @@ export class PublicationsService {
     this.resultSubject$.next(value)
   }
 
-  
+
   constructor(
     private http:HttpClient,
     private snackBar: MatSnackBar
-  ) { 
+  ) {
     // this.prueba = this.getPublication(107).subscribe()
   }
   get publicationOnEdit():Observable<Publication>{
@@ -49,14 +49,14 @@ export class PublicationsService {
         //////////
         return v.data
       })
-      
+
     )
 
   }
 
   updatePublication(data): Observable<Publication>{
     console.log(data);
-    
+
     const id = this.publicationEditSubject$.value.id
     // data._method = "put";
     return this.http.put<Response>(`${environment.API}${environment.routesCRUD.publications}/${id}`, data).pipe(
@@ -67,7 +67,7 @@ export class PublicationsService {
         //////////
         return v.data
       })
-      
+
     )
 
   }
@@ -82,7 +82,7 @@ export class PublicationsService {
         return resp;
       }
     )
-    
+
     )
   }
 
@@ -94,20 +94,21 @@ export class PublicationsService {
         params: new HttpParams()
           .set('page', currentPage.toString())
           .set('filter', filter)
+          .set('active', "1")
           .set('sort', sort)
           .set('per_page', perPage.toString())
 
       }).pipe(map(
         res => {
           console.log(res);
-          
+
           this.setPublicationOnEdit(null)
           this.setItems(res)
           const resp = res
           return resp;
         }
       )
-      
+
       )
     }
 
@@ -115,15 +116,15 @@ export class PublicationsService {
     return this.http.delete<Response>(`${environment.API}${environment.routesCRUD.publications}/${id}`).pipe(
       map( v => {
         // console.log(v.data);
-        
+
         this.getPublications(1, 20, '', 'desc').pipe(take(1)).subscribe()
         //snacbarr
         this.openSnackBar('Eliminado correctamente','success-snack-bar')
         //////////
         return v.data
-        
+
       })
-      
+
     )
   }
 
@@ -132,9 +133,9 @@ export class PublicationsService {
       duration: 1000,
       horizontalPosition: 'center',
       verticalPosition: 'top',
-      panelClass: refClass 
+      panelClass: refClass
     });
   }
-  
-  
+
+
 }

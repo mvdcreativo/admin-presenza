@@ -1,110 +1,111 @@
 <form [formGroup]="form">
-
-    <mat-form-field class="" appearance="outline">
-        <mat-label>Código</mat-label>
-        <input formControlName="code" matInput placeholder="Cod.Ref">
+  <span class="c1-1 status-content">
+    <mat-form-field appearance="outline" class="">
+      <mat-label>Status</mat-label>
+      <mat-select formControlName="status_id">
+        <mat-option *ngFor="let status of statuses | async" [value]="status.id">{{ status.name }}</mat-option>
+      </mat-select>
     </mat-form-field>
 
-    <mat-form-field class="c2-1" appearance="outline">
-        <mat-label>Titulo</mat-label>
-        <input formControlName="title" matInput placeholder="Titulo descriptivo">
-    </mat-form-field>
+  </span>
+  <mat-form-field class="" appearance="outline">
+    <mat-label>Código</mat-label>
+    <input formControlName="code" matInput placeholder="Cod.Ref">
+  </mat-form-field>
 
-    <mat-form-field appearance="outline">
-        <mat-label>Tipo de Propiedad</mat-label>
-        <mat-select formControlName="property_type_id">
-            <mat-option>Selecciona...</mat-option>
-            <mat-option *ngFor="let propertyType of propertyTypes | async" [value]="propertyType.id">{{
-                propertyType.name }}</mat-option>
-        </mat-select>
-    </mat-form-field>
+  <mat-form-field class="c2-1" appearance="outline">
+    <mat-label>Titulo</mat-label>
+    <input formControlName="title" matInput placeholder="Titulo descriptivo">
+  </mat-form-field>
 
-    <mat-form-field class="" appearance="outline">
-        <mat-label>Provincia</mat-label>
-        <mat-select placeholder="Seleccione Provincia..." formControlName="state" (selectionChange)="onSelectState()">
-            <mat-option *ngFor="let state of states | async" [value]="state.id">
-                {{state.name}}
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Tipo de Propiedad</mat-label>
+    <mat-select formControlName="property_type_id">
+      <mat-option>Selecciona...</mat-option>
+      <mat-option *ngFor="let propertyType of propertyTypes | async" [value]="propertyType.id">{{
+        propertyType.name }}</mat-option>
+    </mat-select>
+  </mat-form-field>
 
-    <mat-form-field class="" appearance="outline">
-        <mat-label>Ciudad</mat-label>
-        <mat-select placeholder="Seleccione Ciudad..." formControlName="city" (selectionChange)="onSelectCity()">
-            <mat-option *ngFor="let city of cities | async | filterCity: form.get('state').value" [value]="city.id">
-                {{city.name}}
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
+  <mat-form-field class="" appearance="outline">
+    <mat-label>Provincia</mat-label>
+    <mat-select placeholder="Seleccione Provincia..." formControlName="state" (selectionChange)="onSelectState()">
+      <mat-option *ngFor="let state of states | async" [value]="state.id">
+        {{state.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
-    <mat-form-field class="" appearance="outline">
-        <mat-label>Municipalidad</mat-label>
-        <mat-select placeholder="Seleccione Municipalidad..." formControlName="municipality"
-            (selectionChange)="onSelectMunicipality()">
-            <mat-option *ngFor="let municipality of municipalities | async | filterMunicipality: form.get('city').value"
-                [value]="municipality.id">
-                {{municipality.name}}
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
+  <mat-form-field class="" appearance="outline">
+    <mat-label>Ciudad</mat-label>
+    <mat-select placeholder="Seleccione Ciudad..." formControlName="city" (selectionChange)="onSelectCity()">
+      <mat-option *ngFor="let city of cities | async | filterCity: form.get('state').value" [value]="city.id">
+        {{city.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
-    <mat-form-field class="" appearance="outline">
-        <mat-label>Localidad/Barrio</mat-label>
-        <mat-select placeholder="Selecciona Localidad/Barrio..." formControlName="neighborhood_id"
-            (selectionChange)="onSelectNeighborhood()">
-            <mat-option
-                *ngFor="let neighborhood of neighborhoods | async | filterNeighborhoods: form.get('municipality').value"
-                [value]="neighborhood.id">
-                {{neighborhood.name}}
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
+  <mat-form-field class="" appearance="outline">
+    <mat-label>Municipalidad</mat-label>
+    <mat-select placeholder="Seleccione Municipalidad..." formControlName="municipality"
+      (selectionChange)="onSelectMunicipality()">
+      <mat-option *ngFor="let municipality of municipalities | async | filterMunicipality: form.get('city').value"
+        [value]="municipality.id">
+        {{municipality.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
-    <mat-form-field class="c1-1" appearance="outline">
-        <mat-label>Dirección</mat-label>
-        <input formControlName="address" matInput placeholder="Dirección" ngx-google-places-autocomplete
-            #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" autocomplete="off" />
+  <mat-form-field class="" appearance="outline">
+    <mat-label>Localidad/Barrio</mat-label>
+    <mat-select placeholder="Selecciona Localidad/Barrio..." formControlName="neighborhood_id"
+      (selectionChange)="onSelectNeighborhood()">
+      <mat-option
+        *ngFor="let neighborhood of neighborhoods | async | filterNeighborhoods: form.get('municipality').value"
+        [value]="neighborhood.id">
+        {{neighborhood.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
-    </mat-form-field>
+  <mat-form-field class="c1-1" appearance="outline">
+    <mat-label>Dirección</mat-label>
+    <input formControlName="address" matInput placeholder="Dirección" ngx-google-places-autocomplete
+      #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" autocomplete="off" />
+
+  </mat-form-field>
 
 
-    <!-- <mat-form-field appearance="outline" class="c1-1">
+  <!-- <mat-form-field appearance="outline" class="c1-1">
         <mat-icon matPrefix class="mr-1 text-muted">location_on</mat-icon>
         <mat-label>Dirección</mat-label>
-        <input matInput placeholder="Enter a location" formControlName="address" autocomplete="off" #addressAutocomplete> 
+        <input matInput placeholder="Enter a location" formControlName="address" autocomplete="off" #addressAutocomplete>
         <button *ngIf="form.get('address').value" mat-button matSuffix mat-icon-button (click)="form.get('address').setValue(null)" type="button">
           <mat-icon>close</mat-icon>
         </button>
-        <mat-error *ngIf="form.get('address').errors?.required">Dirección requerida</mat-error>   
+        <mat-error *ngIf="form.get('address').errors?.required">Dirección requerida</mat-error>
     </mat-form-field> -->
-    <div class="c1-1">
-        <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [scrollwheel]="false" (mapClick)="onMapClick($event)">
-            <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-        </agm-map>
-    </div>
+  <div class="c1-1">
+    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [scrollwheel]="false" (mapClick)="onMapClick($event)">
+      <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+    </agm-map>
+  </div>
 
-    <mat-form-field class="" appearance="outline">
-        <mat-label>Latitud</mat-label>
-        <input formControlName="latitude" matInput placeholder="Latitud" readonly>
-    </mat-form-field>
+  <mat-form-field class="" appearance="outline">
+    <mat-label>Latitud</mat-label>
+    <input formControlName="latitude" matInput placeholder="Latitud" readonly>
+  </mat-form-field>
 
-    <mat-form-field class="" appearance="outline">
-        <mat-label>Longitud</mat-label>
-        <input formControlName="longitude" matInput placeholder="Longitud" readonly>
-    </mat-form-field>
+  <mat-form-field class="" appearance="outline">
+    <mat-label>Longitud</mat-label>
+    <input formControlName="longitude" matInput placeholder="Longitud" readonly>
+  </mat-form-field>
 
-    <mat-form-field appearance="outline">
-        <mat-label>Status</mat-label>
-        <mat-select formControlName="status_id">
-            <mat-option *ngFor="let status of statuses | async" [value]="status.id">{{ status.name }}</mat-option>
-        </mat-select>
-    </mat-form-field>
-
-    <mat-form-field class="mvd-col1--1" appearance="outline">
-        <mat-label>Descripción</mat-label>
-        <textarea formControlName="description" style="min-height:200px " matInput placeholder="Descripción"></textarea>
-    </mat-form-field>
-    <span>
-        <button mat-flat-button color="primary" (click)="onSubmit()">Sigiente</button>
-    </span>
+  <mat-form-field class="mvd-col1--1" appearance="outline">
+    <mat-label>Descripción</mat-label>
+    <textarea formControlName="description" style="min-height:200px " matInput placeholder="Descripción"></textarea>
+  </mat-form-field>
+  <span>
+    <button mat-flat-button color="primary" [disabled]='!form.valid' (click)="onSubmit()">Sigiente</button>
+  </span>
 </form>
