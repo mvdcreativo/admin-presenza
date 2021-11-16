@@ -1,7 +1,7 @@
 <form [formGroup]="form" *ngIf="fields">
 <ng-container *ngFor="let field of fields">
 
-    <ng-container *ngIf="field.type === 'text' || field.type === 'time'">
+    <ng-container *ngIf="field.type === 'text' || field.type === 'time' || field.type === 'password' ">
 
         <mat-form-field class="" appearance="outline">
             <mat-label>{{ field.label }}</mat-label>
@@ -9,7 +9,7 @@
         </mat-form-field>
 
     </ng-container>
-  
+
     <ng-container *ngIf="field.type === 'select' && field.nameControl !== 'property_id'">
         <mat-form-field class="" appearance="outline">
             <mat-label>{{ field.label }}</mat-label>
@@ -41,7 +41,7 @@
             </mat-select>
         </mat-form-field>
     </ng-container>
-  
+
     <ng-container *ngIf="field.type === 'select-mvd-col1--1'">
         <mat-form-field class="mvd-col1--1" appearance="outline">
             <mat-label>{{ field.label }}</mat-label>
@@ -58,12 +58,12 @@
 
         <mat-form-field class="" appearance="outline">
             <mat-label>{{ field.label }}</mat-label>
-            <input 
-                [formControlName]="field.nameControl" 
-                matInput 
-                [placeholder]="field.label" 
-                [matDatepicker]="picker" 
-                autocomplete="off" 
+            <input
+                [formControlName]="field.nameControl"
+                matInput
+                [placeholder]="field.label"
+                [matDatepicker]="picker"
+                autocomplete="off"
                 (click)="picker.open()">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker startView="year"></mat-datepicker>
@@ -96,7 +96,7 @@
                 <input matInput [(colorPicker)]="colorPreview" (colorPickerChange)="chanhgeColor()"  [formControlName]="field.nameControl" [placeholder]="field.label" autocomplete="off">
             </mat-form-field>
             <mat-icon [(colorPicker)]="colorPreview" (colorPickerChange)="chanhgeColor()" [ngStyle]="{'color': colorPreview}" class="material-icons-round">web</mat-icon>
-            
+
         </div>
     </ng-container> -->
 
@@ -105,11 +105,11 @@
         <div class="content-select-ico">
             <button mat-flat-button class="btn-select-ico" [ngStyle]="{'background-color': colorPreview}"color="primary" (click)="selectIco()">
                 <mat-icon class="material-icons-round">{{ field.value }}</mat-icon>
-                Seleccionar Icono 
+                Seleccionar Icono
             </button>
         </div>
     </ng-container> -->
-    
+
     <ng-container *ngIf="field.type === 'image'">
         <div class="content-image">
             <div class="upload">
@@ -124,7 +124,7 @@
             </div>
         </div>
     </ng-container>
-    
+
     <ng-container *ngIf="field.type === 'autocomplete'">
         <mat-form-field class="mvd-col1--1"  appearance="outline">
             <input
@@ -140,7 +140,7 @@
               </mat-option>
             </mat-autocomplete>
         </mat-form-field>
-    
+
     </ng-container>
 </ng-container>
 

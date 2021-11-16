@@ -20,9 +20,9 @@ export class FormUserComponent implements OnInit, OnDestroy {
   subcriptions: Subscription[] = [];
   userEdit: User;
   urlReturn: any;
-  typesDocIden: OptionSelect[] 
+  typesDocIden: OptionSelect[]
   fields: Fields[];
-  
+
   constructor(
     private userService: UserService,
     private router: Router,
@@ -48,7 +48,7 @@ export class FormUserComponent implements OnInit, OnDestroy {
     this.subcriptions.push(this.userService.getUser(id).subscribe(
         res => {
           console.log(res);
-          
+
           this.userEdit = res
           // console.log(res);
           this.setFields()
@@ -58,7 +58,7 @@ export class FormUserComponent implements OnInit, OnDestroy {
 
 
   setFields() {
-    
+
     this.fields = [
       { nameControl: 'id', type: 'hidden', value: this.userEdit?.id, label: 'Id' },
       { nameControl: 'image', type: 'image', value: this.userEdit?.account?.image, label: 'Imagen' },
@@ -72,24 +72,26 @@ export class FormUserComponent implements OnInit, OnDestroy {
       { nameControl: 'movil', type: 'text', value: this.userEdit?.account?.movil, label: 'Celular' },
       { nameControl: 'company', type: 'text', value: this.userEdit?.account?.company, label: 'Empresa (si corresponde)' },
       { nameControl: 'cuit', type: 'text', value: this.userEdit?.account?.cuit, label: 'CUIT (si corresponde)' },
+      { nameControl: 'password', type: 'password', value: null, label: 'Nueva contraseña' },
+
     ]
-    
+
   }
 
   dataSubmit(e) {
     console.log(e);
-    
+
       const data = e
       if (this.userEdit) {
-  
+
           this.updateUser(data)
-          
+
       } else {
-  
+
         this.addUser(data)
-  
+
       }
-    
+
 
 
   }
@@ -98,7 +100,7 @@ export class FormUserComponent implements OnInit, OnDestroy {
     this.userService.storeUser(data).pipe(take(1)).subscribe(
       res => {
         console.log(res);
-        
+
         this.location.back();
         // this.userService.setUserOnEdit(res)
       }
