@@ -1,6 +1,6 @@
 {
   "name": "admin-presenza",
-  "version": "1.0.2Beta",
+  "version": "1.1.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
